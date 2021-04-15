@@ -1,0 +1,36 @@
+/* eslint-disable */
+
+/* GLOBAL STYLES */
+@font-face {
+  font-family: Helvetica;
+  src: url(fonts/HelveticaRegular.woff);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: Helvetica;
+  src: url(fonts/HelveticaLight.woff);
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: Helvetica;
+  src: url(fonts/HelveticaBold.woff);
+  font-weight: 700;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#__next {
+  height: 100%;
+  width: 100%;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  line-height: 1.33 !important;
+}
