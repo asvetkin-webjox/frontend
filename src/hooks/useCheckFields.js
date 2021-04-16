@@ -6,4 +6,7 @@ export const useCheckFields = () => {
   // get object of all values of inputs
   // check them, each one of scpecific req
   // return errors or true
+  // return errors or true
+  // return errors or true
+  // add line
 };
