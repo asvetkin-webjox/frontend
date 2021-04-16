@@ -30,6 +30,7 @@ export const SocialModal = ({ name }) => {
         <img src="/icons/facebook.svg" />
         <img src="/icons/vk.svg" />
         <img src="/icons/apple.svg" />
+        <img src="/icons/slack.svg" />
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ export const useGenerateUrl = () => {
 
   useEffect(() => {
     setUrl(generateUrl);
-  }, [isRegion, isPage, isOrder, isSort]);
+  }, [isRegion, isPage, isOrder, isSort, matchesMobile]);
 
   useEffect(() => {
     setPage(1);

@@ -10,7 +10,8 @@ const useStyles = makeStyles(({ palette: { primary, secondary }, shadow }) => ({
     backgroundColor: primary.dim,
     color: secondary.main,
     boxShadow: shadow.primary,
-    fontSize: '10px',
+    fontSize: '12px',
+    padding: '4px 16px',
   },
 }));
 

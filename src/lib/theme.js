@@ -33,6 +33,7 @@ const theme = createMuiTheme({
     blue: '#286AF0',
     blueLight: '#717FB0',
     border: '#2D80FF',
+    buttonHover: '#1061DC',
   },
   // FONTS
   typography: {

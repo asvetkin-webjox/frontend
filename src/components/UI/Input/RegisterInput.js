@@ -20,7 +20,7 @@ export const RegisterInput = ({
   inputHandler,
   isErrors,
   isPassed,
-  isToggle,
+  togglePassword,
   toggleHandler,
 }) => {
   const ifPassword = name === 'repeat' || name === 'password';
@@ -28,7 +28,7 @@ export const RegisterInput = ({
 
   const { container } = useStyles();
   const showPassword = () => {
-    if (isToggle) return 'text';
+    if (togglePassword) return 'text';
     if (ifPassword) return 'password';
 
     return 'text';

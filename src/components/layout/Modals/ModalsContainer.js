@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { ID_REGISTER, ID_LOGIN, ID_FORGOT } from 'config/config';
-import { RegisterModal } from 'components/layout/Modals/RegisterModal';
+import { RegisterModal } from 'components/layout/Modals/RegisterModal/RegisterModal';
 import { LoginModal } from 'components/layout/Modals/LoginModal';
 import { ForgotModal } from 'components/layout/Modals/ForgotModal';
 import { sharedStyles } from 'lib/sharedStyles';
