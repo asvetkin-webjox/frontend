@@ -24,13 +24,13 @@ export const ModalsContainer = ({ isOpened, handleClose, modalHandler }) => {
         styles={button}
         modalHandler={modalHandler}
       />
-      <ForgotModal
+      {/* <ForgotModal
         isOpened={isOpened}
         handleClose={handleClose}
         idRegister={ID_FORGOT}
         styles={button}
         modalHandler={modalHandler}
-      />
+      /> */}
     </Fragment>
   );
 };

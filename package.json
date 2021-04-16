@@ -14,6 +14,7 @@
     "@material-ui/styles": "4.11.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "js-cookie": "latest",
     "mongodb": "^3.6.5",
     "mongoose": "^5.12.2",
     "next": "^10.0.2",
@@ -21,8 +22,9 @@
     "react": "latest",
     "react-click-away-listener": "^2.0.2",
     "react-dom": "latest",
-    "react-transition-group": "^4.4.1",
-    "js-cookie": "latest"
+    "react-number-format": "^4.5.5",
+    "react-text-mask": "^5.4.3",
+    "react-transition-group": "^4.4.1"
   },
   "devDependencies": {
     "babel-eslint": "10.0.2",

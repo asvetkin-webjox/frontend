@@ -25,7 +25,7 @@ export const Search = ({ searchHandler }) => {
         width="100%"
         isAdornment
         styles={InputStyle}
-        searchHandler={searchHandler}
+        inputHandler={searchHandler}
       />
     </div>
   );

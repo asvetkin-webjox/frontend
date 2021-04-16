@@ -1,8 +1,13 @@
 import React from 'react';
 
-export const CustomButton = ({ modalHandler, id = '', name, styles }) => {
+export const CustomButton = ({ modalHandler, id = '', name, styles, handlePass }) => {
+  const handlers = (e) => {
+    if (modalHandler) modalHandler(e);
+    if (handlePass) handlePass();
+  };
+
   return (
-    <div className={styles} id={id} onClick={modalHandler}>
+    <div className={styles} id={id} onClick={handlers}>
       {name}
     </div>
   );

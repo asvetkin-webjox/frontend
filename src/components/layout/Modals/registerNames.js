@@ -27,6 +27,6 @@ export const registerNames = [
   {
     icon: 'password.svg',
     placeholder: 'Ваш пароль повторно',
-    name: 'password repeat',
+    name: 'repeat',
   },
 ];
