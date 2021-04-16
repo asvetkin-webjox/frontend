@@ -6,6 +6,7 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
     left: '18px',
     top: '12px',
+    zIndex: '2',
   },
 }));
 

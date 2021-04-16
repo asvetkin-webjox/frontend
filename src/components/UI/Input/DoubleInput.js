@@ -4,7 +4,7 @@ import { Input } from 'components/UI/Input/Input';
 import { inputLeftStyle } from 'components/UI/Input/inputLeftStyle';
 import { inputRightStyle } from 'components/UI/Input/inputRightStyle';
 import { InputIcon } from 'components/UI/Input/InputIcon';
-import { useInputHandler } from 'hooks/useInputHandler';
+import { ErrorMessage } from 'components/UI/Input/ErrorMessage';
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -12,31 +12,39 @@ const useStyles = makeStyles(() => ({
     position: 'relative',
     marginBottom: '20px',
   },
+  input: {
+    position: 'relative',
+  },
 }));
 
-export const DoubleInput = ({ placeholders, names, icon }) => {
-  const { container } = useStyles();
+export const DoubleInput = ({ placeholders, names, icon, isErrors, isPassed, inputHandler }) => {
+  const { container, input } = useStyles();
   const [fisrtName, secondName] = names;
   const [firstPh, secondPh] = placeholders;
-  const { inputHandler } = useInputHandler();
 
   return (
     <div className={container}>
       <InputIcon url={`icons/${icon}`} />
-      <Input
-        placeholder={firstPh}
-        width="161px"
-        isAdornment
-        inputHandler={inputHandler(fisrtName)}
-        styles={inputLeftStyle}
-      />
-      <Input
-        placeholder={secondPh}
-        width="161px"
-        isAdornment={false}
-        inputHandler={inputHandler(secondName)}
-        styles={inputRightStyle}
-      />
+      <div className={input}>
+        <Input
+          placeholder={firstPh}
+          width="161px"
+          isAdornment
+          inputHandler={inputHandler(fisrtName)}
+          styles={inputLeftStyle}
+        />
+        {!isPassed && fisrtName && <ErrorMessage name={fisrtName} message={isErrors} />}
+      </div>
+      <div className={input}>
+        <Input
+          placeholder={secondPh}
+          width="161px"
+          isAdornment={false}
+          inputHandler={inputHandler(secondName)}
+          styles={inputRightStyle}
+        />
+        {!isPassed && secondName && <ErrorMessage name={secondName} message={isErrors} />}
+      </div>
     </div>
   );
 };

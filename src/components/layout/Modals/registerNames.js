@@ -6,7 +6,7 @@ export const registerNames = [
   },
   {
     placeholders: ['Вашe имя', 'Ваша фамилия'],
-    names: ['name', 'name'],
+    names: ['name', 'surname'],
     icon: 'name.svg',
   },
   {
@@ -27,6 +27,6 @@ export const registerNames = [
   {
     icon: 'password.svg',
     placeholder: 'Ваш пароль повторно',
-    name: 'password repeat',
+    name: 'repeat',
   },
 ];

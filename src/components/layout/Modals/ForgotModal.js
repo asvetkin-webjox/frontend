@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ModalContainer } from 'components/UI/Modal/ModalContainer';
 import { RegisterTemplate } from 'templates/RegisterTemplate';
@@ -20,17 +20,29 @@ export const ForgotModal = ({ handleClose, isOpened, idRegister, modalHandler })
   return (
     <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister}>
       <RegisterTemplate name="Восстановить пароль">
-        <div className={container}>
-          {onlyEmail.map(({ icon, placeholder, name }) => (
-            <RegisterInput icon={icon} placeholder={placeholder} name={name} />
-          ))}
-        </div>
-        <div style={{ marginBottom: '20px' }}>
-          <CustomButton name="Восстановить" styles={`${button} ${blueButton} ${bigButton}`} />
-        </div>
-        <div style={{ marginBottom: '40px' }}>
-          <ModalButtons modalHandler={modalHandler} handleClose={handleClose} type="восстановить" />
-        </div>
+        {({ combinedFunc, handlePass, ...rest }) => (
+          <Fragment>
+            <div className={container}>
+              {onlyEmail.map(({ icon, placeholder, name }) => (
+                <RegisterInput icon={icon} placeholder={placeholder} name={name} {...rest} />
+              ))}
+            </div>
+            <div style={{ marginBottom: '20px' }}>
+              <CustomButton
+                name="Восстановить"
+                styles={`${button} ${blueButton} ${bigButton}`}
+                handler={combinedFunc}
+              />
+            </div>
+            <div style={{ marginBottom: '40px' }}>
+              <ModalButtons
+                modalHandler={modalHandler}
+                handleClose={handleClose}
+                type="восстановить"
+              />
+            </div>
+          </Fragment>
+        )}
       </RegisterTemplate>
     </ModalContainer>
   );

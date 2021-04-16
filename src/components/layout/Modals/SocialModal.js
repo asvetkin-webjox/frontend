@@ -13,13 +13,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const SocialModal = ({ isOpened }) => {
+export const SocialModal = ({ name }) => {
   const { container, iconsContainer } = useStyles();
-  const text = isOpened === 'Login' ? 'Войти' : 'Зарегистрироваться';
+  const text = () => {
+    if (name === 'Войти в аккаунт') return 'Войти';
+
+    return 'Зарегистрироваться';
+  };
 
   return (
     <div className={container}>
-      <div style={{ marginBottom: '16px' }}>{`${text} используя аккаунт в соцсетях`}</div>
+      <div style={{ marginBottom: '16px' }}>{`${text()} используя аккаунт в соцсетях`}</div>
       <div className={iconsContainer}>
         <img src="/icons/google.svg" />
         <img src="/icons/yandex.svg" />

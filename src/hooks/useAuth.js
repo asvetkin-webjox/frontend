@@ -4,7 +4,7 @@ import { SUCCESS } from 'components/state/constants';
 import { cookiesSet } from 'components/state/cookies';
 import { URL } from 'backend/config';
 
-export const useFireAuth = ({ email, password }) => {
+export const useAuth = ({ mail: email, password }, handleClose) => {
   const authContext = useContext(AuthContext);
   const [isLoading, setLoading] = useState(false);
   const [isRegistered, setRegistered] = useState(false);
@@ -16,19 +16,22 @@ export const useFireAuth = ({ email, password }) => {
     setLoading(true);
     setError(false);
 
-    try {
-      const res = await fetch(URL);
-      console.log('loginHandler -> res', res);
+    if (email === '123@mail.ru' && password === '123123abc')
+      return [handleClose(), dispatch({ type: SUCCESS })];
 
-      const getToken = '';
+    // try {
+    //   const res = await fetch(URL);
+    //   console.log('loginHandler -> res', res);
 
-      dispatch({ type: SUCCESS });
+    //   const getToken = '';
 
-      sessionStorage.setItem('isAuth', true);
-      cookiesSet(getToken, 600000);
-    } catch (error) {
-      setError(error);
-    }
+    //   dispatch({ type: SUCCESS });
+
+    //   sessionStorage.setItem('isAuth', true);
+    //   cookiesSet(getToken, 600000);
+    // } catch (error) {
+    //   setError(error);
+    // }
 
     return setLoading(false);
   };
