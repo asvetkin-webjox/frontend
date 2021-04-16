@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { modalMessages } from 'lib/messages';
 import { ifAllFalse, checkEmail } from 'utils/checkFields';
 
-export const useCheckFields = ({ isInputs }, isOpened) => {
+export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
+  console.log('useCheckFields -> isInputs', isInputs);
   const {
     shortPassword,
     weakPassword,
@@ -10,6 +11,8 @@ export const useCheckFields = ({ isInputs }, isOpened) => {
     wrongPhone,
     wrongRetypePass,
     wrongName,
+    notAccepted,
+    wrongSurname,
   } = modalMessages;
   const { password = '', mail = '', phone = '', repeat = '', name = '', surname = '' } = isInputs;
   const [isErrors, setErrors] = useState(false);
@@ -82,7 +85,6 @@ export const useCheckFields = ({ isInputs }, isOpened) => {
 
   /* NAME AND SURNAME */
   useEffect(() => {
-    console.log(name);
     if (!name)
       return setErrors((state) => ({
         ...state,
@@ -92,9 +94,35 @@ export const useCheckFields = ({ isInputs }, isOpened) => {
     return setErrors((state) => ({
       ...state,
       name: false,
+    }));
+  }, [name]);
+
+  useEffect(() => {
+    if (!surname)
+      return setErrors((state) => ({
+        ...state,
+        surname: wrongSurname,
+      }));
+
+    return setErrors((state) => ({
+      ...state,
       surname: false,
     }));
-  }, [name, surname]);
+  }, [surname]);
+
+  /* TERMS */
+  useEffect(() => {
+    if (!isTerms)
+      return setErrors((state) => ({
+        ...state,
+        terms: notAccepted,
+      }));
+
+    return setErrors((state) => ({
+      ...state,
+      terms: false,
+    }));
+  }, [isTerms]);
 
   const handlePass = () => {
     const checked = ifAllFalse(isErrors);

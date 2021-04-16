@@ -6,5 +6,6 @@ export const modalMessages = {
   wrongRetypePass: 'Пароли не совпадают',
   notAccepted: 'Правила не приняты',
   emailExist: 'E-mail уже существует',
-  wrongName: 'E-mail уже существует',
+  wrongName: 'Введите имя',
+  wrongSurname: 'Введите фамилию',
 };

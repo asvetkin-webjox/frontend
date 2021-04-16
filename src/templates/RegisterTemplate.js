@@ -30,7 +30,7 @@ export const RegisterTemplate = ({ children, name, isOpened }) => {
       <div style={{ marginBottom: '20px' }}>
         <Divider classes={{ root: divider }} />
       </div>
-      <SocialModal isOpened={isOpened} />
+      <SocialModal name={name} />
     </div>
   );
 };

@@ -4,7 +4,6 @@ import { Input } from 'components/UI/Input/Input';
 import { inputLeftStyle } from 'components/UI/Input/inputLeftStyle';
 import { inputRightStyle } from 'components/UI/Input/inputRightStyle';
 import { InputIcon } from 'components/UI/Input/InputIcon';
-import { useInputHandler } from 'hooks/useInputHandler';
 import { ErrorMessage } from 'components/UI/Input/ErrorMessage';
 
 const useStyles = makeStyles(() => ({
@@ -15,13 +14,10 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const DoubleInput = ({ placeholders, name, names, icon, isErrors, isPassed }) => {
-  console.log('DoubleInput -> name', name);
+export const DoubleInput = ({ placeholders, names, icon, isErrors, isPassed, inputHandler }) => {
   const { container } = useStyles();
   const [fisrtName, secondName] = names;
   const [firstPh, secondPh] = placeholders;
-  const { inputHandler } = useInputHandler();
-  const arrNames = ['name', 'surname'];
 
   return (
     <div className={container}>
@@ -40,8 +36,8 @@ export const DoubleInput = ({ placeholders, name, names, icon, isErrors, isPasse
         inputHandler={inputHandler(secondName)}
         styles={inputRightStyle}
       />
-      {arrNames.map(
-        (el) => !isPassed && name === el && <ErrorMessage name={el} message={isErrors} />,
+      {names.map(
+        (el, i) => !isPassed && names[i] === el && <ErrorMessage name={el} message={isErrors} />,
       )}
     </div>
   );

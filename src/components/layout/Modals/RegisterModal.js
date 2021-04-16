@@ -8,9 +8,11 @@ import { ModalButtons } from 'components/layout/Modals/ModalButtons';
 import { AcceptTerms } from 'components/layout/Modals/AcceptTerms';
 import { registerNames } from 'components/layout/Modals/registerNames';
 import { RegisterTemplate } from 'templates/RegisterTemplate';
+import { useToggle } from 'hooks/useToggle';
 
 export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler }) => {
   const { button, blueButton, bigButton } = sharedStyles();
+  const { isToggle, toggleHandler } = useToggle();
 
   return (
     <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister}>
@@ -22,13 +24,7 @@ export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler 
                 const { icon, placeholder, placeholders, name, names } = el;
                 if (i === 1)
                   return (
-                    <DoubleInput
-                      icon={icon}
-                      placeholders={placeholders}
-                      name={name}
-                      names={names}
-                      {...rest}
-                    />
+                    <DoubleInput icon={icon} placeholders={placeholders} names={names} {...rest} />
                   );
 
                 return (
@@ -53,7 +49,7 @@ export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler 
               <ModalButtons modalHandler={modalHandler} handleClose={handleClose} />
             </div>
             <div style={{ marginBottom: '20px' }}>
-              <AcceptTerms {...rest} />
+              <AcceptTerms {...rest} isToggle={isToggle} toggleHandler={toggleHandler} />
             </div>
           </Fragment>
         )}

@@ -1,10 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useToggle } from 'hooks/useToggle';
 import { sharedStyles } from 'lib/sharedStyles';
+import { ErrorMessage } from 'components/UI/Input/ErrorMessage';
 
 const useStyles = makeStyles((theme) => ({
   container: {
+    position: 'relative',
     display: 'flex',
     textAlign: 'left',
   },
@@ -14,9 +15,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const AcceptTerms = ({}) => {
+export const AcceptTerms = ({ isPassed, isErrors, isToggle, toggleHandler }) => {
   const { container, image } = useStyles();
-  const { isToggle, toggleHandler } = useToggle();
   const choiceImage = isToggle ? 'ovalFilled.svg' : 'oval.svg';
   const { link } = sharedStyles();
 
@@ -29,6 +29,7 @@ export const AcceptTerms = ({}) => {
         <span> и</span>
         <span className={link}> использования cookie-файлов.</span>
       </div>
+      {!isPassed && !isToggle && <ErrorMessage name="terms" message={isErrors} />}
     </div>
   );
 };

@@ -6,7 +6,7 @@ export const registerNames = [
   },
   {
     placeholders: ['Вашe имя', 'Ваша фамилия'],
-    names: ['name', 'name'],
+    names: ['name', 'surname'],
     icon: 'name.svg',
   },
   {
