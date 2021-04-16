@@ -3,7 +3,6 @@ import { modalMessages } from 'lib/messages';
 import { ifAllFalse, checkEmail } from 'utils/checkFields';
 
 export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
-  console.log('useCheckFields -> isInputs', isInputs);
   const {
     shortPassword,
     weakPassword,

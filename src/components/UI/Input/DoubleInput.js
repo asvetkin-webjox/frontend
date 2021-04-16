@@ -12,33 +12,39 @@ const useStyles = makeStyles(() => ({
     position: 'relative',
     marginBottom: '20px',
   },
+  input: {
+    position: 'relative',
+  },
 }));
 
 export const DoubleInput = ({ placeholders, names, icon, isErrors, isPassed, inputHandler }) => {
-  const { container } = useStyles();
+  const { container, input } = useStyles();
   const [fisrtName, secondName] = names;
   const [firstPh, secondPh] = placeholders;
 
   return (
     <div className={container}>
       <InputIcon url={`icons/${icon}`} />
-      <Input
-        placeholder={firstPh}
-        width="161px"
-        isAdornment
-        inputHandler={inputHandler(fisrtName)}
-        styles={inputLeftStyle}
-      />
-      <Input
-        placeholder={secondPh}
-        width="161px"
-        isAdornment={false}
-        inputHandler={inputHandler(secondName)}
-        styles={inputRightStyle}
-      />
-      {names.map(
-        (el, i) => !isPassed && names[i] === el && <ErrorMessage name={el} message={isErrors} />,
-      )}
+      <div className={input}>
+        <Input
+          placeholder={firstPh}
+          width="161px"
+          isAdornment
+          inputHandler={inputHandler(fisrtName)}
+          styles={inputLeftStyle}
+        />
+        {!isPassed && fisrtName && <ErrorMessage name={fisrtName} message={isErrors} />}
+      </div>
+      <div className={input}>
+        <Input
+          placeholder={secondPh}
+          width="161px"
+          isAdornment={false}
+          inputHandler={inputHandler(secondName)}
+          styles={inputRightStyle}
+        />
+        {!isPassed && secondName && <ErrorMessage name={secondName} message={isErrors} />}
+      </div>
     </div>
   );
 };

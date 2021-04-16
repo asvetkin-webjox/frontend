@@ -5,32 +5,14 @@ import { LoginModal } from 'components/layout/Modals/LoginModal';
 import { ForgotModal } from 'components/layout/Modals/ForgotModal';
 import { sharedStyles } from 'lib/sharedStyles';
 
-export const ModalsContainer = ({ isOpened, handleClose, modalHandler }) => {
+export const ModalsContainer = (props) => {
   const { button } = sharedStyles();
 
   return (
     <Fragment>
-      <RegisterModal
-        isOpened={isOpened}
-        handleClose={handleClose}
-        idRegister={ID_REGISTER}
-        styles={button}
-        modalHandler={modalHandler}
-      />
-      <LoginModal
-        isOpened={isOpened}
-        handleClose={handleClose}
-        idRegister={ID_LOGIN}
-        styles={button}
-        modalHandler={modalHandler}
-      />
-      {/* <ForgotModal
-        isOpened={isOpened}
-        handleClose={handleClose}
-        idRegister={ID_FORGOT}
-        styles={button}
-        modalHandler={modalHandler}
-      /> */}
+      <RegisterModal idRegister={ID_REGISTER} styles={button} {...props} />
+      <LoginModal idRegister={ID_LOGIN} styles={button} {...props} />
+      <ForgotModal idRegister={ID_FORGOT} styles={button} {...props} />
     </Fragment>
   );
 };

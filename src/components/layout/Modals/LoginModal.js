@@ -12,24 +12,15 @@ export const LoginModal = ({ handleClose, isOpened, idRegister, modalHandler }) 
 
   return (
     <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister}>
-      <RegisterTemplate name="Войти в аккаунт" isOpened={isOpened}>
-        {({ inputHandler, isErrors, handlePass, isPassed, isToggle, toggleHandler }) => (
+      <RegisterTemplate name="Войти в аккаунт" isOpened={isOpened} handleClose={handleClose}>
+        {({ combinedFunc, ...rest }) => (
           <Fragment>
             <div>
               {loginNames.map((el) => {
                 const { icon, placeholder, name } = el;
 
                 return (
-                  <RegisterInput
-                    icon={icon}
-                    placeholder={placeholder}
-                    name={name}
-                    inputHandler={inputHandler}
-                    isErrors={isErrors}
-                    isPassed={isPassed}
-                    isToggle={isToggle}
-                    toggleHandler={toggleHandler}
-                  />
+                  <RegisterInput icon={icon} placeholder={placeholder} name={name} {...rest} />
                 );
               })}
             </div>
@@ -37,7 +28,7 @@ export const LoginModal = ({ handleClose, isOpened, idRegister, modalHandler }) 
               <CustomButton
                 name="Войти"
                 styles={`${button} ${blueButton} ${bigButton}`}
-                handlePass={handlePass}
+                handler={combinedFunc}
               />
             </div>
             <div style={{ marginBottom: '40px' }}>

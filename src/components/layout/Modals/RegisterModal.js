@@ -17,7 +17,7 @@ export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler 
   return (
     <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister}>
       <RegisterTemplate name="Зарегистрироваться">
-        {({ handlePass, ...rest }) => (
+        {({ combinedFunc, handlePass, ...rest }) => (
           <Fragment>
             <div>
               {registerNames.map((el, i) => {
@@ -42,7 +42,7 @@ export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler 
               <CustomButton
                 name="Зарегистрироваться"
                 styles={`${button} ${blueButton} ${bigButton}`}
-                handlePass={handlePass}
+                handler={combinedFunc}
               />
             </div>
             <div style={{ marginBottom: '40px' }}>
