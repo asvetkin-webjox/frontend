@@ -43,7 +43,7 @@ export const RegisterTemplate = ({ children, name, isOpened, handleClose }) => {
 
     return loginHandler();
   };
-  const combinedObject = { ...inputs, ...errors, ...toggle, ...auth, combinedFunc };
+  const combinedObject = { ...inputs, ...errors, ...toggle, ...auth, combinedFunc, isOpened };
 
   return (
     <div className={container}>
