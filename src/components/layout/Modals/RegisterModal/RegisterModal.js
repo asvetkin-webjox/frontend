@@ -37,6 +37,7 @@ export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler 
                 name="Зарегистрироваться"
                 styles={`${button} ${blueButton} ${bigButton}`}
                 handler={combinedFunc}
+                id="register"
               />
             </div>
             <div style={{ marginBottom: matchesMobile ? '20px' : '40px' }}>

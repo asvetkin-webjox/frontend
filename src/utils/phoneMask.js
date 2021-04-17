@@ -1,6 +1,7 @@
 import NumberFormat from 'react-number-format';
 
-export function phoneMask(props) {
+export const phoneMask = (props) => {
+  // console.log('phoneMask -> type', type);
   const { inputRef, onChange, ...other } = props;
 
   return (
@@ -15,8 +16,10 @@ export function phoneMask(props) {
           },
         });
       }}
-      format="+# ### ### ## ##"
-      isNumericString
+      /* eslint-disable */
+      // prefix={'+'}
+      // format="+ #### ### ## ##"
+      // isNumericString
     />
   );
 }

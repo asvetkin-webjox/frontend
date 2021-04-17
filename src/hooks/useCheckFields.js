@@ -25,9 +25,10 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
     repeat === '' || password !== repeat,
     !name,
     !surname,
-    !isTerms,
+    // !isTerms,
   ];
   const conditionsLogin = [password.length < 8, !checkEmail(mail)];
+  const conditionsForgot = [!checkEmail(mail)];
   // const loginTexts = [password.length < 8, !checkEmail(mail)];
   const texts = [
     { mail: wrongEmail },
@@ -55,11 +56,11 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
 
   useEffect(() => {
     setErrors(false);
-    if (isOpened === 'Login') {
-      return checkConditions(conditionsLogin);
-    }
+    if (isOpened === 'Login') return checkConditions(conditionsLogin);
+    if (isOpened === 'Forgot') return checkConditions(conditionsForgot);
+
     return checkConditions(conditions);
-  }, [isInputs, isTerms]);
+  }, [isInputs, isTerms, isOpened]);
 
   const handlePass = () => {
     const checked = ifAllFalse(isErrors);

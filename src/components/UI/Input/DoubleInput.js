@@ -19,6 +19,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
   input: {
     position: 'relative',
+    width: '50%',
   },
 }));
 
@@ -27,7 +28,7 @@ export const DoubleInput = ({ placeholders, names, icon, isErrors, isPassed, inp
   const [fisrtName, secondName] = names;
   const [firstPh, secondPh] = placeholders;
   const { matchesMobile } = useMedia();
-  const calcWidth = matchesMobile ? '45vw' : '161px';
+  const calcWidth = matchesMobile ? '100%' : '161px';
 
   return (
     <div className={container}>

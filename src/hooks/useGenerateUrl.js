@@ -17,7 +17,7 @@ export const useGenerateUrl = () => {
   const searchHandler = (e) => {
     const { value } = e.target;
     const lowerCase = value.toLowerCase();
-    const timeOutId = setTimeout(() => setSearch(lowerCase), 500);
+    const timeOutId = setTimeout(() => setSearch(lowerCase), 300);
 
     return () => clearTimeout(timeOutId);
   };
