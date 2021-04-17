@@ -64,8 +64,7 @@ export const useAuth = (
       /* send e-mail to user */
       // await sendMail()
 
-      // setRegistered(true);
-      setError(true);
+      setRegistered(true);
     } catch (error) {
       console.log('registerHandler -> error', error);
       setError(error);
