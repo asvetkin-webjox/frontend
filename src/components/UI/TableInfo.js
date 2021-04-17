@@ -15,7 +15,7 @@ export const TableInfo = ({ index, classes, mobile = false }) => {
   return (
     <ClickAwayListener onClickAway={toggleOff}>
       <div>
-        <CustomTooltip title={tooltipsText[calcIndex]} id="Инфо" open={isToggle}>
+        <CustomTooltip title={tooltipsText[calcIndex]} id="Инфо" open={isToggle} mobile={mobile}>
           <img src="icons/info.svg" className={classes} id="Инфо" onClick={dispatchHandler} />
         </CustomTooltip>
       </div>

@@ -25,10 +25,7 @@ export const RegisterContent = ({ isToggle, toggleOn, openHandler, isOpen, open,
                 toggleOn={open}
                 id="Тип аккаунта"
               >
-                {(props) => [
-                  <DropElTemplate name="Компания" id="Компания" {...props} />,
-                  <DropElTemplate name="Частное лицо" id="Частное лицо" {...props} />,
-                ]}
+                {(props) => [<DropElTemplate name="Компания" id="Компания" {...props} />]}
               </DropDownTemplate>
             </div>
           );

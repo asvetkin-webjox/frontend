@@ -11,10 +11,10 @@ const useStyles = makeStyles(({ palette: { primary } }) => ({
 
 export const TableEls = ({ sizes, data, isPage, isLoading }) => {
   const { container } = useStyles();
-  const arrLength = data.length;
+  const arrLength = data && data.length;
 
   const checkIfBlank = (() => {
-    if (!isLoading && data.length === 0) return <NothingFound />;
+    if (!isLoading && arrLength === 0) return <NothingFound />;
 
     return (
       data &&

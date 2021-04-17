@@ -16,10 +16,8 @@ export const phoneMask = (props) => {
           },
         });
       }}
-      /* eslint-disable */
-      // prefix={'+'}
-      // format="+ #### ### ## ##"
-      // isNumericString
+      format="+7 (###) ### ## ##"
+      isNumericString
     />
   );
-}
+};
