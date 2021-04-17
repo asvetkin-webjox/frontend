@@ -9,23 +9,26 @@ const useStyles = makeStyles(({ palette: { primary } }) => ({
   },
 }));
 
-export const TableEls = ({ sizes, data = [], isPage, isLoading }) => {
+export const TableEls = ({ sizes, data, isPage, isLoading }) => {
   const { container } = useStyles();
   const arrLength = data.length;
 
   const checkIfBlank = (() => {
     if (!isLoading && data.length === 0) return <NothingFound />;
 
-    return data.map((el, i) => (
-      <TableEl
-        data={el}
-        index={i}
-        sizes={sizes}
-        key={`${i}table`}
-        isPage={isPage}
-        arrLength={arrLength}
-      />
-    ));
+    return (
+      data &&
+      data.map((el, i) => (
+        <TableEl
+          data={el}
+          index={i}
+          sizes={sizes}
+          key={`${i}table`}
+          isPage={isPage}
+          arrLength={arrLength}
+        />
+      ))
+    );
   })();
 
   return <div className={container}>{checkIfBlank}</div>;
