@@ -27,11 +27,21 @@ export const RegisterTemplate = ({ children, name, isOpened, handleClose }) => {
   const { handlePass, ...errors } = useCheckFields(inputs, isOpened);
   const { isErrors } = errors;
   const { ...toggle } = useToggle(false);
-  const { loginHandler, isLoading, ...auth } = useAuth(isInputs, handlePass, handleClose);
+  const { loginHandler, registerHandler, isLoading, ...auth } = useAuth(
+    isInputs,
+    handlePass,
+    handleClose,
+  );
   // const combinedFunc = () => [handlePass(), loginHandler()];
-  const combinedFunc = () => {
+  const combinedFunc = (e) => {
+    const { id } = e.target;
     handlePass();
-    if (!isErrors) return loginHandler();
+
+    if (isErrors) return;
+    if (id === 'register') return registerHandler();
+    if (id === 'forgot') return registerHandler();
+
+    return loginHandler();
   };
   const combinedObject = { ...inputs, ...errors, ...toggle, ...auth, combinedFunc };
 

@@ -5,7 +5,7 @@ const useStyles = makeStyles(({ palette: { accent, green } }) => ({
   svg: {
     display: 'flex',
     fill: ({ up }) => (up ? green : accent),
-    transform: ({ up }) => (up ? 'rotate(0deg)' : 'rotate(90deg)'),
+    transform: ({ up }) => (up ? 'rotate(0deg)' : 'scaleX(-1) rotate(180deg)'),
   },
 }));
 

@@ -17,7 +17,7 @@ export const RegisterContent = ({ isToggle, toggleOn, openHandler, isOpen, open,
         const { icon, placeholder, placeholders, name, names } = el;
         if (i === 0)
           return (
-            <div style={{ marginBottom: matchesMobile ? '1px' : '20px' }}>
+            <div style={{ marginBottom: matchesMobile ? '16px' : '20px' }}>
               <DropDownTemplate
                 isToggle={isOpen}
                 name="Тип аккаунта"
@@ -25,7 +25,10 @@ export const RegisterContent = ({ isToggle, toggleOn, openHandler, isOpen, open,
                 toggleOn={open}
                 id="Тип аккаунта"
               >
-                {(props) => <DropElTemplate name="Компания" id="Компания" {...props} />}
+                {(props) => [
+                  <DropElTemplate name="Компания" id="Компания" {...props} />,
+                  <DropElTemplate name="Частное лицо" id="Частное лицо" {...props} />,
+                ]}
               </DropDownTemplate>
             </div>
           );

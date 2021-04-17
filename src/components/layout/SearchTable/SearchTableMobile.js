@@ -4,6 +4,7 @@ import { headerEls } from 'components/layout/SearchTable/headerEls';
 import { tableElements } from 'components/layout/SearchTable/TableEls/tableElements';
 import { LoadingContainer } from 'components/UI/LoadingContainer';
 import { NothingFound } from 'components/layout/SearchTable/TableEls/NothingFound';
+import { TableInfo } from 'components/UI/TableInfo';
 
 const useStyles = makeStyles(({ palette: { primary, blueLight }, shadows }) => ({
   container: {
@@ -73,7 +74,7 @@ export const SearchTableMobile = ({ items = [], isLoading }) => {
             <div className={inner} key={`${i}search`}>
               <div className={textBlock}>
                 <div className={text}>{el}</div>
-                <img src="icons/info.svg" className={icon} />
+                <TableInfo index={i} classes={icon} mobile />
               </div>
               <div className={content}>{contentObj[i + 1]}</div>
             </div>

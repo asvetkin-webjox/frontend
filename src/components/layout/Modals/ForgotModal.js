@@ -19,7 +19,7 @@ export const ForgotModal = ({ handleClose, isOpened, idRegister, modalHandler })
 
   return (
     <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister}>
-      <RegisterTemplate name="Восстановить пароль" handleClose={handleClose}>
+      <RegisterTemplate name="Восстановить пароль" isOpened={isOpened} handleClose={handleClose}>
         {({ combinedFunc, handlePass, ...rest }) => (
           <Fragment>
             <div className={container}>
@@ -32,6 +32,7 @@ export const ForgotModal = ({ handleClose, isOpened, idRegister, modalHandler })
                 name="Восстановить"
                 styles={`${button} ${blueButton} ${bigButton}`}
                 handler={combinedFunc}
+                id="forgot"
               />
             </div>
             <div style={{ marginBottom: '40px' }}>

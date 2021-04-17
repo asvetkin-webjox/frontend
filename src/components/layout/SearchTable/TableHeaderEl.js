@@ -1,12 +1,8 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { UpDown } from 'components/UI/UpDown';
-import { CustomTooltip } from 'components/UI/CustomTooltip';
 import { ToggleContext } from 'components/state/context/toggle-context';
-import { DIMMED_BG } from 'components/state/constants';
-import { useToggle } from 'hooks/useToggle';
-import ClickAwayListener from 'react-click-away-listener';
-import { tooltipsText } from 'components/layout/SearchTable/tooltipsText';
+import { TableInfo } from 'components/UI/TableInfo';
 
 const useStyles = makeStyles(({ palette: { primary, blueLight } }) => ({
   container: {
@@ -43,24 +39,15 @@ const useStyles = makeStyles(({ palette: { primary, blueLight } }) => ({
 export const TableHeaderEl = ({ name, sizes = [], index, ...rest }) => {
   const { container, text, right, info } = useStyles({ sizes, index });
   const {
-    dispatch,
     toggleState: { dimmed },
   } = useContext(ToggleContext);
-  const { isToggle, toggleHandler, toggleOff } = useToggle();
-  const dispatchHandler = () => [toggleHandler(), dispatch({ type: DIMMED_BG })];
 
   return (
     <div className={container}>
       <span className={text}>{name}</span>
       {index !== 0 && (
         <div className={right}>
-          <ClickAwayListener onClickAway={toggleOff}>
-            <div>
-              <CustomTooltip title={tooltipsText[index - 1]} id="Инфо" open={isToggle}>
-                <img src="icons/info.svg" className={info} id="Инфо" onClick={dispatchHandler} />
-              </CustomTooltip>
-            </div>
-          </ClickAwayListener>
+          <TableInfo index={index} classes={info} />
           <UpDown index={index} dimmed={dimmed} {...rest} />
         </div>
       )}
