@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     position: 'absolute',
-    right: '-24px',
-    top: '-32px',
+    right: '-6px',
+    top: '-4px',
   },
   icon: {
     '& svg': {

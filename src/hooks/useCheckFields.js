@@ -54,11 +54,11 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
 
   const handlePass = () => {
     const checked = ifAllFalse(isErrors);
-
+    // setErrors(!checked);
     if (checked) return setPassed(true);
 
     return setPassed(false);
   };
 
-  return { isErrors, handlePass, isPassed };
+  return { isErrors, handlePass, isPassed, setPassed };
 };

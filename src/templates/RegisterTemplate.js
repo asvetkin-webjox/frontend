@@ -8,10 +8,10 @@ import { useCheckFields } from 'hooks/useCheckFields';
 import { useToggle } from 'hooks/useToggle';
 import { useAuth } from 'hooks/useAuth';
 import { XButton } from 'components/UI/Buttons/XButton';
+import { LoadingContainer } from 'components/UI/LoadingContainer';
 
 const useStyles = makeStyles(({ palette: { blueLight } }) => ({
   container: {
-    position: 'relative',
     textAlign: 'center',
   },
   divider: {
@@ -26,13 +26,14 @@ export const RegisterTemplate = ({ children, name, isOpened, handleClose }) => {
   const { isInputs } = inputs;
   const { handlePass, ...errors } = useCheckFields(inputs, isOpened);
   const { ...toggle } = useToggle(false);
-  const { loginHandler, ...auth } = useAuth(isInputs, handleClose);
+  const { loginHandler, isLoading, ...auth } = useAuth(isInputs, handlePass, handleClose);
   const combinedFunc = () => [handlePass(), loginHandler()];
   const combinedObject = { ...inputs, ...errors, ...toggle, ...auth, combinedFunc };
 
   return (
     <div className={container}>
       <ModalHeader name={name} />
+      <LoadingContainer loading={isLoading} />
       {children(combinedObject)}
       <div style={{ marginBottom: '20px' }}>
         <Divider classes={{ root: divider }} />
