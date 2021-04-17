@@ -5,17 +5,23 @@ import { cookiesSet } from 'components/state/cookies';
 import { URL } from 'backend/config';
 import { headers } from 'config/config';
 
-export const useAuth = ({ mail: username, password }, handlePass, handleClose) => {
+export const useAuth = (
+  { mail: username, password, repeat: passwordRetyped },
+  handlePass,
+  handleClose,
+) => {
   const authContext = useContext(AuthContext);
   const [isLoading, setLoading] = useState(false);
   const [isRegistered, setRegistered] = useState(false);
-  const [isError, setError] = useState(false);
+  const [isAuthError, setError] = useState(false);
   const [isReset, setReset] = useState(false);
   const { dispatch } = authContext;
   const loginUrl = 'http://45.80.71.95:3000/login';
+  const registerUrl = 'http://45.80.71.95:8281/signup';
   const body = JSON.stringify({
-    username: '123',
-    password: '123',
+    username,
+    password,
+    passwordRetyped,
   });
   const { loginHeader } = headers;
 
@@ -26,7 +32,6 @@ export const useAuth = ({ mail: username, password }, handlePass, handleClose) =
     // if (handlePass) {
     try {
       const res = await fetch(loginUrl, loginHeader(body));
-      console.log('loginHandler -> res', res);
 
       const { token } = await res.json();
 
@@ -49,12 +54,20 @@ export const useAuth = ({ mail: username, password }, handlePass, handleClose) =
     setError(false);
 
     try {
-      const res = await fetch(loginUrl, loginHeader(body));
+      const res = await fetch(registerUrl, loginHeader(body));
+      console.log('registerHandler -> res', res);
+      // console.log('registerHandler -> res', res.text());
+      const data = await res.text();
+      console.log('registerHandler -> data', data);
+      // console.log('registerHandler -> data', data);
+
       /* send e-mail to user */
       // await sendMail()
 
-      setRegistered(true);
+      // setRegistered(true);
+      setError(true);
     } catch (error) {
+      console.log('registerHandler -> error', error);
       setError(error);
     }
 
@@ -81,7 +94,7 @@ export const useAuth = ({ mail: username, password }, handlePass, handleClose) =
     loginHandler,
     registerHandler,
     resetHandler,
-    isError,
+    isAuthError,
     setError,
     isRegistered,
     isReset,
