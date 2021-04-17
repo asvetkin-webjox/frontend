@@ -8,36 +8,46 @@ import { RegisterTemplate } from 'templates/RegisterTemplate';
 import { useToggle } from 'hooks/useToggle';
 import ClickAwayListener from 'react-click-away-listener';
 import { RegisterContent } from 'components/layout/Modals/RegisterModal/RegisterContent';
+import { useMedia } from 'hooks/useMedia';
 
 export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler }) => {
   const { button, blueButton, bigButton } = sharedStyles();
   const { isToggle: isAccept, toggleHandler: toggleAccept } = useToggle();
-  const { toggleOff, ...toggle } = useToggle(false);
+  const { toggleOff: close, toggleOn: open, isToggle: isOpen, ...toggle } = useToggle(false);
+  const closePop = (e) => {
+    const blankFunc = () => null;
+    const { id } = e.target;
+    if (id !== 'Тип аккаунта') return close();
+
+    return blankFunc();
+  };
+
+  const { matchesMobile } = useMedia();
 
   return (
-    <ClickAwayListener onClickAway={toggleOff}>
-      <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister} {...toggle}>
-        <RegisterTemplate name="Зарегистрироваться">
-          {({ combinedFunc, toggleHandler, ...rest }) => (
-            <Fragment>
-              <RegisterContent {...rest} {...toggle} />
-              <div style={{ marginBottom: '20px' }}>
-                <CustomButton
-                  name="Зарегистрироваться"
-                  styles={`${button} ${blueButton} ${bigButton}`}
-                  handler={combinedFunc}
-                />
-              </div>
-              <div style={{ marginBottom: '40px' }}>
-                <ModalButtons modalHandler={modalHandler} handleClose={handleClose} />
-              </div>
-              <div style={{ marginBottom: '20px' }}>
-                <AcceptTerms {...rest} isToggle={isAccept} toggleHandler={toggleAccept} />
-              </div>
-            </Fragment>
-          )}
-        </RegisterTemplate>
-      </ModalContainer>
-    </ClickAwayListener>
+    <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister} isToggle={isOpen}>
+      <RegisterTemplate name="Зарегистрироваться" handleClose={handleClose}>
+        {({ combinedFunc, ...rest }) => (
+          <Fragment>
+            <ClickAwayListener onClickAway={closePop}>
+              <RegisterContent {...toggle} {...rest} open={open} isOpen={isOpen} />
+            </ClickAwayListener>
+            <div style={{ marginBottom: '20px' }}>
+              <CustomButton
+                name="Зарегистрироваться"
+                styles={`${button} ${blueButton} ${bigButton}`}
+                handler={combinedFunc}
+              />
+            </div>
+            <div style={{ marginBottom: matchesMobile ? '20px' : '40px' }}>
+              <ModalButtons modalHandler={modalHandler} handleClose={handleClose} />
+            </div>
+            <div style={{ marginBottom: '20px' }}>
+              <AcceptTerms {...rest} isToggle={isAccept} toggleHandler={toggleAccept} />
+            </div>
+          </Fragment>
+        )}
+      </RegisterTemplate>
+    </ModalContainer>
   );
 };

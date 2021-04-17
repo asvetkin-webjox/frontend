@@ -5,11 +5,15 @@ import { InputIcon } from 'components/UI/Input/InputIcon';
 import { ErrorMessage } from 'components/UI/Input/ErrorMessage';
 import { phoneMask } from 'utils/phoneMask';
 import { ShowPassword } from 'components/UI/Buttons/ShowPassword';
+import { useToggle } from 'hooks/useToggle';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   container: {
     position: 'relative',
     marginBottom: '20px',
+    [breakpoints.down('sm')]: {
+      marginBottom: ({ blockName }) => (blockName === 'register' ? '16px' : '20px'),
+    },
   },
 }));
 
@@ -20,15 +24,15 @@ export const RegisterInput = ({
   inputHandler,
   isErrors,
   isPassed,
-  togglePassword,
-  toggleHandler,
+  blockName,
 }) => {
+  const { isToggle, toggleHandler } = useToggle();
   const ifPassword = name === 'repeat' || name === 'password';
   const arrNames = ['password', 'mail', 'phone', 'repeat'];
 
-  const { container } = useStyles();
+  const { container } = useStyles({ blockName });
   const showPassword = () => {
-    if (togglePassword) return 'text';
+    if (isToggle) return 'text';
     if (ifPassword) return 'password';
 
     return 'text';

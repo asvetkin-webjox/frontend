@@ -5,10 +5,10 @@ export const useInputHandler = () => {
 
   const inputHandler = (type) => (e) => {
     const timeOutId = setTimeout(() => {
-      setInputs({
-        ...isInputs,
+      setInputs((state) => ({
+        ...state,
         [type]: e.target.value,
-      });
+      }));
     }, 300);
     return () => clearTimeout(timeOutId);
   };

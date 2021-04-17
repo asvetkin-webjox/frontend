@@ -4,7 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
-const useStyles = makeStyles(({ palette: { primary }, shadow }) => ({
+const useStyles = makeStyles(({ breakpoints, palette: { primary }, shadow }) => ({
   container: {
     display: 'flex',
     alignItems: 'center',
@@ -29,6 +29,10 @@ const useStyles = makeStyles(({ palette: { primary }, shadow }) => ({
       backgroundColor: '#000',
       opacity: ({ isToggle }) => (isToggle ? '0.25' : '1'),
       width: ({ isToggle }) => (isToggle ? '100%' : '0%'),
+    },
+    [breakpoints.down('sm')]: {
+      width: '100%',
+      height: '100%',
     },
   },
 }));

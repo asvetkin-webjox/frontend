@@ -5,12 +5,13 @@ import { URL } from 'backend/config';
 export const useGenerateUrl = () => {
   const [isPage, setPage] = useState(1);
   const defaultUrl = `${URL}/data?page=${isPage}&perPage=20`;
+  const defaultMobile = `${URL}/data?page=${isPage}&perPage=1`;
 
   const [isRegion, setRegion] = useState(false);
   const [isSearch, setSearch] = useState(false);
   const [isSort, setSort] = useState(false);
   const [isOrder, setOrder] = useState(false);
-  const { matchesMobile } = useMedia();
+  const { matchesMobile, matchesDesktop } = useMedia();
   const [isUrl, setUrl] = useState(defaultUrl);
 
   const searchHandler = (e) => {
@@ -40,7 +41,15 @@ export const useGenerateUrl = () => {
 
   useEffect(() => {
     setUrl(generateUrl);
-  }, [isRegion, isPage, isOrder, isSort, matchesMobile]);
+  }, [isRegion, isPage, isOrder, isSort]);
+
+  useEffect(() => {
+    setSearch('');
+
+    if (matchesMobile) return setUrl(defaultMobile);
+
+    return setUrl(defaultUrl);
+  }, [matchesDesktop, matchesMobile]);
 
   useEffect(() => {
     setPage(1);

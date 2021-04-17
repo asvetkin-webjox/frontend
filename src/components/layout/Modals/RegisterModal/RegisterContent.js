@@ -5,9 +5,11 @@ import { registerNames } from 'components/layout/Modals/registerNames';
 import { RegisterInput } from 'components/UI/Input/RegisterInput';
 import { DoubleInput } from 'components/UI/Input/DoubleInput';
 import { dropDownStyle } from 'lib/dropDownStyle';
+import { useMedia } from 'hooks/useMedia';
 
-export const RegisterContent = ({ isToggle, toggleOn, togglePassword, ...rest }) => {
+export const RegisterContent = ({ isToggle, toggleOn, openHandler, isOpen, open, ...rest }) => {
   const { ...styles } = dropDownStyle();
+  const { matchesMobile } = useMedia();
 
   return (
     <Fragment>
@@ -15,12 +17,13 @@ export const RegisterContent = ({ isToggle, toggleOn, togglePassword, ...rest })
         const { icon, placeholder, placeholders, name, names } = el;
         if (i === 0)
           return (
-            <div style={{ marginBottom: '20px' }} onClick={toggleOn}>
+            <div style={{ marginBottom: matchesMobile ? '1px' : '20px' }}>
               <DropDownTemplate
-                isToggle={isToggle}
+                isToggle={isOpen}
                 name="Тип аккаунта"
                 styles={styles}
-                toggleOn={toggleOn}
+                toggleOn={open}
+                id="Тип аккаунта"
               >
                 {(props) => <DropElTemplate name="Компания" id="Компания" {...props} />}
               </DropDownTemplate>
@@ -34,8 +37,8 @@ export const RegisterContent = ({ isToggle, toggleOn, togglePassword, ...rest })
             icon={icon}
             placeholder={placeholder}
             name={name}
+            blockName="register"
             isDouble={i === 1 || i === 2}
-            togglePassword={togglePassword}
             {...rest}
           />
         );

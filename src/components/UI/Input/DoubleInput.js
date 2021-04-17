@@ -5,12 +5,17 @@ import { inputLeftStyle } from 'components/UI/Input/inputLeftStyle';
 import { inputRightStyle } from 'components/UI/Input/inputRightStyle';
 import { InputIcon } from 'components/UI/Input/InputIcon';
 import { ErrorMessage } from 'components/UI/Input/ErrorMessage';
+import { useMedia } from 'hooks/useMedia';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   container: {
     display: 'flex',
     position: 'relative',
+    width: '100%',
     marginBottom: '20px',
+    [breakpoints.down('sm')]: {
+      marginBottom: '16px',
+    },
   },
   input: {
     position: 'relative',
@@ -21,6 +26,8 @@ export const DoubleInput = ({ placeholders, names, icon, isErrors, isPassed, inp
   const { container, input } = useStyles();
   const [fisrtName, secondName] = names;
   const [firstPh, secondPh] = placeholders;
+  const { matchesMobile } = useMedia();
+  const calcWidth = matchesMobile ? '45vw' : '161px';
 
   return (
     <div className={container}>
@@ -28,7 +35,7 @@ export const DoubleInput = ({ placeholders, names, icon, isErrors, isPassed, inp
       <div className={input}>
         <Input
           placeholder={firstPh}
-          width="161px"
+          width={calcWidth}
           isAdornment
           inputHandler={inputHandler(fisrtName)}
           styles={inputLeftStyle}
@@ -38,7 +45,7 @@ export const DoubleInput = ({ placeholders, names, icon, isErrors, isPassed, inp
       <div className={input}>
         <Input
           placeholder={secondPh}
-          width="161px"
+          width={calcWidth}
           isAdornment={false}
           inputHandler={inputHandler(secondName)}
           styles={inputRightStyle}

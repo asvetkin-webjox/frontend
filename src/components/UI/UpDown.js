@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
 export const UpDown = ({ index, orderHandler, ...rest }) => {
   const { container } = useStyles();
   const shiftIndex = index - 1;
-  const names = ['niche', 'volume', 'growth', 'trend'];
+  const names = ['niche', 'volume', 'growth', 'trend', 'anomaly', 'difficulity', 'saved'];
 
   return (
     <div className={container} onClick={orderHandler} id={names[shiftIndex]}>

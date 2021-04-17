@@ -7,9 +7,11 @@ import { useInputHandler } from 'hooks/useInputHandler';
 import { useCheckFields } from 'hooks/useCheckFields';
 import { useToggle } from 'hooks/useToggle';
 import { useAuth } from 'hooks/useAuth';
+import { XButton } from 'components/UI/Buttons/XButton';
 
 const useStyles = makeStyles(({ palette: { blueLight } }) => ({
   container: {
+    position: 'relative',
     textAlign: 'center',
   },
   divider: {
@@ -19,6 +21,7 @@ const useStyles = makeStyles(({ palette: { blueLight } }) => ({
 
 export const RegisterTemplate = ({ children, name, isOpened, handleClose }) => {
   const { container, divider } = useStyles();
+
   const { ...inputs } = useInputHandler();
   const { isInputs } = inputs;
   const { handlePass, ...errors } = useCheckFields(inputs, isOpened);
@@ -35,6 +38,7 @@ export const RegisterTemplate = ({ children, name, isOpened, handleClose }) => {
         <Divider classes={{ root: divider }} />
       </div>
       <SocialModal name={name} />
+      <XButton handleClose={handleClose} />
     </div>
   );
 };
