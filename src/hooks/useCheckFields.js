@@ -15,21 +15,24 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
   } = modalMessages;
   const { password = '', mail = '', phone = '', repeat = '', name = '', surname = '' } = isInputs;
   const [isErrors, setErrors] = useState(false);
+
   const [isPassed, setPassed] = useState(true);
   const conditions = [
+    !checkEmail(mail),
     password.length < 8,
     !password.match(/[a-z]/i) || !password.match(/[0-9]/),
-    !checkEmail(mail),
     phone.length < 10,
     repeat === '' || password !== repeat,
     !name,
     !surname,
     !isTerms,
   ];
+  const conditionsLogin = [password.length < 8, !checkEmail(mail)];
+  // const loginTexts = [password.length < 8, !checkEmail(mail)];
   const texts = [
+    { mail: wrongEmail },
     { password: shortPassword },
     { password: weakPassword },
-    { mail: wrongEmail },
     { phone: wrongPhone },
     { repeat: wrongRetypePass },
     { name: wrongName },
@@ -37,19 +40,25 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
     { terms: notAccepted },
   ];
 
-  useEffect(() => {
-    setPassed(true);
-  }, [isOpened]);
-
-  useEffect(() => {
-    setErrors(false);
-    conditions.map((condition, i) => {
+  const checkConditions = (conds) =>
+    conds.map((condition, i) => {
       if (condition)
         setErrors((state) => ({
           ...state,
           [Object.keys(texts[i])]: Object.values(texts[i]),
         }));
     });
+
+  useEffect(() => {
+    setPassed(true);
+  }, [isOpened]);
+
+  useEffect(() => {
+    setErrors(false);
+    if (isOpened === 'Login') {
+      return checkConditions(conditionsLogin);
+    }
+    return checkConditions(conditions);
   }, [isInputs, isTerms]);
 
   const handlePass = () => {

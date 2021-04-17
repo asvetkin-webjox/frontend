@@ -12,7 +12,7 @@ const useStyles = makeStyles(({ palette: { accent } }) => ({
   },
 }));
 
-export const ErrorMessage = ({ name, message }) => {
+export const ErrorMessage = ({ name, message = [] }) => {
   const { container } = useStyles();
 
   return <div className={container}>{message[name]}</div>;

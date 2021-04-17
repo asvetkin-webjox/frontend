@@ -20,8 +20,8 @@ export const useAuth = ({ mail: username, password }, handlePass, handleClose) =
     const loginUrl = 'http://45.80.71.95:3000/login';
 
     const body = JSON.stringify({
-      username: '123@mail.ru',
-      password: '123123123a',
+      username: '123',
+      password: '123',
     });
 
     const { loginHeader } = headers;
