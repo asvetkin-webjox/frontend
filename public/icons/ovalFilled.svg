@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Oval</title>
+    <title>Group 2</title>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="TOOLTIPS-REGISTRATION-v0_2-(Desktop)" transform="translate(-351.000000, -602.000000)" fill="#1FC78E" stroke="#1EC78E">
-            <g id="Group-84" transform="translate(327.000000, 15.000000)">
-                <circle id="Oval" cx="30" cy="593" r="5.5"></circle>
+        <g id="TOOLTIPS-REGISTRATION-v0_2-(Tablet)" transform="translate(-223.000000, -730.000000)">
+            <g id="Group-87" transform="translate(199.000000, 143.000000)">
+                <g id="Group-2" transform="translate(24.000000, 587.000000)">
+                    <circle id="Oval" stroke="#1EC78E" cx="6" cy="6" r="5.5"></circle>
+                    <circle id="Oval-Copy" fill="#1EC78E" cx="6" cy="6" r="4"></circle>
+                </g>
             </g>
         </g>
     </g>

@@ -19,7 +19,7 @@ export const ForgotModal = ({ handleClose, isOpened, idRegister, modalHandler })
 
   return (
     <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister}>
-      <RegisterTemplate name="Восстановить пароль">
+      <RegisterTemplate name="Восстановить пароль" handleClose={handleClose}>
         {({ combinedFunc, handlePass, ...rest }) => (
           <Fragment>
             <div className={container}>

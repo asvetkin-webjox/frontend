@@ -24,10 +24,11 @@ const useStyles = makeStyles(({ breakpoints }) => ({
 
 export const TableGrowth = ({ growth }) => {
   const { container, ...classes } = useStyles();
-  const growthPercentage = `${(growth * 100).toString().slice(0, 4)} %`;
+  const growthPercentage = `${parseFloat((growth * 100).toString().slice(0, 4))} %`;
+
   const checkGrowth = (() => {
     if (growth < 0) return [<UpTrend up={false} {...classes} />, growthPercentage];
-    if (growth > 0) return [<UpTrend up {...classes} />, growthPercentage];
+    if (growth > 0) return [<UpTrend up {...classes} />, `+${growthPercentage}`];
 
     return '-';
   })();

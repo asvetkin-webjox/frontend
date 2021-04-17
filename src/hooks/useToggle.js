@@ -5,6 +5,7 @@ export const useToggle = (init = false) => {
 
   const toggleHandler = () => setToggle((o) => !o);
   const toggleOff = () => setToggle(false);
+  const toggleOn = () => setToggle(true);
 
-  return { isToggle, toggleHandler, setToggle, toggleOff };
+  return { isToggle, toggleHandler, setToggle, toggleOff, toggleOn };
 };

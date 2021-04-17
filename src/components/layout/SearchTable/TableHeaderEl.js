@@ -56,7 +56,7 @@ export const TableHeaderEl = ({ name, sizes = [], index, ...rest }) => {
         <div className={right}>
           <ClickAwayListener onClickAway={toggleOff}>
             <div>
-              <CustomTooltip title={tooltipsText[index]} id="Инфо" open={isToggle}>
+              <CustomTooltip title={tooltipsText[index - 1]} id="Инфо" open={isToggle}>
                 <img src="icons/info.svg" className={info} id="Инфо" onClick={dispatchHandler} />
               </CustomTooltip>
             </div>

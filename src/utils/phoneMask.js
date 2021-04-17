@@ -15,7 +15,7 @@ export function phoneMask(props) {
           },
         });
       }}
-      format="+7 ### ### ## ##"
+      format="+# ### ### ## ##"
       isNumericString
     />
   );

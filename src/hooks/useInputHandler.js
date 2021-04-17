@@ -4,10 +4,13 @@ export const useInputHandler = () => {
   const [isInputs, setInputs] = useState({});
 
   const inputHandler = (type) => (e) => {
-    setInputs({
-      ...isInputs,
-      [type]: e.target.value,
-    });
+    const timeOutId = setTimeout(() => {
+      setInputs((state) => ({
+        ...state,
+        [type]: e.target.value,
+      }));
+    }, 300);
+    return () => clearTimeout(timeOutId);
   };
 
   return { isInputs, inputHandler };

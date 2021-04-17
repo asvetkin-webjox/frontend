@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { headerEls } from 'components/layout/SearchTable/headerEls';
 import { tableElements } from 'components/layout/SearchTable/TableEls/tableElements';
 import { LoadingContainer } from 'components/UI/LoadingContainer';
+import { NothingFound } from 'components/layout/SearchTable/TableEls/NothingFound';
 
 const useStyles = makeStyles(({ palette: { primary, blueLight }, shadows }) => ({
   container: {
@@ -55,6 +56,7 @@ export const SearchTableMobile = ({ items = [], isLoading }) => {
   const [data] = items;
   const [oneItem] = data || [];
   const { container, header, inner, textBlock, text, icon, content } = useStyles();
+  const ifBlank = data && data.length === 0;
 
   const contentObj = tableElements({ ...oneItem });
 
@@ -63,7 +65,8 @@ export const SearchTableMobile = ({ items = [], isLoading }) => {
   return (
     <div className={container}>
       <LoadingContainer loading={isLoading} />
-      {!isLoading && (
+      {!isLoading && ifBlank && <NothingFound />}
+      {!isLoading && !ifBlank && (
         <Fragment>
           <div className={header}>{contentObj[0]}</div>
           {elemetNames.map((el, i) => (
