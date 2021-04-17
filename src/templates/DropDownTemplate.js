@@ -3,7 +3,7 @@ import { useSelect } from 'hooks/useSelect';
 
 export const DropDownTemplate = ({ name, children, styles, isToggle, toggleOn, id }) => {
   const { container, title, content } = styles;
-  const { selectHandler, isSelected } = useSelect();
+  const { selectHandler, isSelected } = useSelect('Компания');
 
   const handlers = { toggleOn, selectHandler };
 

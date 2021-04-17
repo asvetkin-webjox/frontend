@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-export const useSelect = () => {
-  const [isSelected, setSelected] = useState('');
+export const useSelect = (defaultName) => {
+  const [isSelected, setSelected] = useState(defaultName);
 
   const selectHandler = (e) => {
     const { id } = e.target;

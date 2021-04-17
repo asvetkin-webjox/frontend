@@ -8,6 +8,7 @@ export const dropDownStyle = makeStyles(({ palette: { primary, blueLight }, shad
     height: '40px',
     padding: '10px 15px 10px 42px',
     cursor: 'pointer',
+    borderRadius: '4px',
     border: `1px solid ${blueLight}`,
     '&:before': {
       content: '""',

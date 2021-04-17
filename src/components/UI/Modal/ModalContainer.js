@@ -33,6 +33,7 @@ const useStyles = makeStyles(({ breakpoints, palette: { primary }, shadow }) => 
     [breakpoints.down('sm')]: {
       width: '100%',
       height: '100%',
+      overflowY: 'scroll',
     },
   },
 }));
