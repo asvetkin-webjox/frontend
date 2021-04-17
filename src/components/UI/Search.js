@@ -13,9 +13,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Search = ({ searchHandler }) => {
+export const Search = ({ searchHandler, searchBtnHandler }) => {
   const { container } = useStyles();
   const { isClicked, clickHandler } = useHidePholder('Поиск по нишам');
+  const keyHandler = (e) => {
+    if (e.key === 'Enter') {
+      searchBtnHandler();
+    }
+  };
 
   return (
     <div onFocus={clickHandler} onBlur={clickHandler} className={container}>
@@ -26,6 +31,7 @@ export const Search = ({ searchHandler }) => {
         isAdornment
         styles={InputStyle}
         inputHandler={searchHandler}
+        onKeyUp={keyHandler}
       />
     </div>
   );
