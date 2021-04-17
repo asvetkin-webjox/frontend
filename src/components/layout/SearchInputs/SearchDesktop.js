@@ -32,7 +32,7 @@ export const SearchDesktop = ({ regions, regionHandler, searchHandler, searchBtn
     <Fragment>
       <div className={container}>
         <div className={search}>
-          <Search searchHandler={searchHandler} />
+          <Search searchHandler={searchHandler} searchBtnHandler={searchBtnHandler} />
         </div>
         <div style={{ marginRight: '30px' }}>
           {!matchesTablet && <SelectRegion regions={regions} regionHandler={regionHandler} />}

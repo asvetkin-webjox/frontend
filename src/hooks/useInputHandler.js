@@ -9,7 +9,7 @@ export const useInputHandler = () => {
         ...state,
         [type]: e.target.value,
       }));
-    }, 300);
+    }, 100);
     return () => clearTimeout(timeOutId);
   };
 
