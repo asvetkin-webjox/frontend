@@ -16,7 +16,7 @@ export const phoneMask = (props) => {
           },
         });
       }}
-      format="+7 (###) ### ## ##"
+      // format="+7 (###) ### ## ##"
       isNumericString
     />
   );
