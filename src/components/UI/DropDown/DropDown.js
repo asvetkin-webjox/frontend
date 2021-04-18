@@ -60,9 +60,6 @@ export const DropDown = ({ regions = [], selectHandler }) => {
           selectHandler={selectHandler}
         />
         {isToggle && data}
-        {/* {filteredCountries.map((el) => (
-          <DropElement handler={toggleHandler} object={el} selectHandler={selectHandler} />
-        ))} */}
       </div>
     </div>
   );
