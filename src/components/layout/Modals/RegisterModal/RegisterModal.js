@@ -29,17 +29,17 @@ export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler 
       <RegisterTemplate name="Зарегистрироваться" handleClose={handleClose}>
         {({ combinedFunc, isRegistered, isErrors, isAuthError, ...rest }) => (
           <Fragment>
-            {!isRegistered && (
-              <ClickAwayListener onClickAway={closePop}>
-                <RegisterContent
-                  {...toggle}
-                  {...rest}
-                  open={open}
-                  isOpen={isOpen}
-                  isErrors={isErrors}
-                />
-              </ClickAwayListener>
-            )}
+            {/* {!isRegistered && ( */}
+            <ClickAwayListener onClickAway={closePop}>
+              <RegisterContent
+                {...toggle}
+                {...rest}
+                open={open}
+                isOpen={isOpen}
+                isErrors={isErrors}
+              />
+            </ClickAwayListener>
+            {/* )} */}
             {/* {isRegistered && !isErrors && (
               <div style={{ margin: '24px 0', fontSize: '20px' }}>Успешная регистрация</div>
             )} */}
