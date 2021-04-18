@@ -40,9 +40,9 @@ export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler 
                 />
               </ClickAwayListener>
             )}
-            {isRegistered && !isErrors && (
+            {/* {isRegistered && !isErrors && (
               <div style={{ margin: '24px 0', fontSize: '20px' }}>Успешная регистрация</div>
-            )}
+            )} */}
             {isAuthError && 'Регистрация не удалась'}
             <div style={{ marginBottom: '20px' }}>
               <CustomButton
