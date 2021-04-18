@@ -61,6 +61,7 @@ export const useAuth = (
       // console.log('registerHandler -> data', data);
       dispatch({ type: SUCCESS });
       sessionStorage.setItem('isAuth', true);
+      handleClose();
       /* send e-mail to user */
       // await sendMail()
 
