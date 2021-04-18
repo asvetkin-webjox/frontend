@@ -55,18 +55,17 @@ export const useAuth = (
 
     try {
       const res = await fetch(registerUrl, loginHeader(body));
-      console.log('registerHandler -> res', res);
       // console.log('registerHandler -> res', res.text());
       const data = await res.text();
       console.log('registerHandler -> data', data);
       // console.log('registerHandler -> data', data);
-
+      dispatch({ type: SUCCESS });
+      sessionStorage.setItem('isAuth', true);
       /* send e-mail to user */
       // await sendMail()
 
       setRegistered(true);
     } catch (error) {
-      console.log('registerHandler -> error', error);
       setError(error);
     }
 
