@@ -27,19 +27,19 @@ export const RegisterTemplate = ({ children, name, isOpened, handleClose }) => {
   const { handlePass, ...errors } = useCheckFields(inputs, isOpened);
   const { isErrors } = errors;
   const { ...toggle } = useToggle(false);
-  const { loginHandler, registerHandler, isLoading, ...auth } = useAuth(
+  const { loginHandler, registerHandler, resetHandler, isLoading, ...auth } = useAuth(
     isInputs,
     handlePass,
     handleClose,
   );
-  // const combinedFunc = () => [handlePass(), loginHandler()];
+
   const combinedFunc = (e) => {
     const { id } = e.target;
     handlePass();
 
     if (isErrors) return;
     if (id === 'register') return registerHandler();
-    if (id === 'forgot') return registerHandler();
+    if (id === 'forgot') return resetHandler();
 
     return loginHandler();
   };

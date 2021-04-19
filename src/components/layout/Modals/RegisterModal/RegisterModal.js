@@ -9,6 +9,8 @@ import { useToggle } from 'hooks/useToggle';
 import ClickAwayListener from 'react-click-away-listener';
 import { RegisterContent } from 'components/layout/Modals/RegisterModal/RegisterContent';
 import { useMedia } from 'hooks/useMedia';
+import { ErrorMessage } from 'components/UI/Input/ErrorMessage';
+import { Error } from 'components/UI/Error';
 
 export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler }) => {
   const { button, blueButton, bigButton } = sharedStyles();
@@ -30,20 +32,22 @@ export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler 
         {({ combinedFunc, isRegistered, isErrors, isAuthError, ...rest }) => (
           <Fragment>
             {/* {!isRegistered && ( */}
-            <ClickAwayListener onClickAway={closePop}>
-              <RegisterContent
-                {...toggle}
-                {...rest}
-                open={open}
-                isOpen={isOpen}
-                isErrors={isErrors}
-              />
-            </ClickAwayListener>
+            <div style={{ position: 'relative' }}>
+              <ClickAwayListener onClickAway={closePop}>
+                <RegisterContent
+                  {...toggle}
+                  {...rest}
+                  open={open}
+                  isOpen={isOpen}
+                  isErrors={isErrors}
+                />
+              </ClickAwayListener>
+              {isAuthError && <Error name="Регистрация не удалась" />}
+            </div>
             {/* )} */}
             {/* {isRegistered && !isErrors && (
               <div style={{ margin: '24px 0', fontSize: '20px' }}>Успешная регистрация</div>
             )} */}
-            {isAuthError && 'Регистрация не удалась'}
             <div style={{ marginBottom: '20px' }}>
               <CustomButton
                 name="Зарегистрироваться"

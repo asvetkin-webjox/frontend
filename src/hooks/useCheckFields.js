@@ -15,6 +15,7 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
   } = modalMessages;
   const { password = '', mail = '', phone = '', repeat = '', name = '', surname = '' } = isInputs;
   const [isErrors, setErrors] = useState(false);
+  console.log('useCheckFields -> isErrors', isErrors);
 
   const [isPassed, setPassed] = useState(true);
   const conditions = [
@@ -27,9 +28,9 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
     !surname,
     // !isTerms,
   ];
-  const conditionsLogin = [password.length < 8, !checkEmail(mail)];
+  const conditionsLogin = [!checkEmail(mail), password.length < 8];
   const conditionsForgot = [!checkEmail(mail)];
-  // const loginTexts = [password.length < 8, !checkEmail(mail)];
+
   const texts = [
     { mail: wrongEmail },
     { password: shortPassword },
@@ -38,7 +39,7 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
     { repeat: wrongRetypePass },
     { name: wrongName },
     { surname: wrongSurname },
-    { terms: notAccepted },
+    // { terms: notAccepted },
   ];
 
   const checkConditions = (conds) =>
@@ -64,7 +65,7 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
 
   const handlePass = () => {
     const checked = ifAllFalse(isErrors);
-    // setErrors(!checked);
+
     if (checked) return setPassed(true);
 
     return setPassed(false);

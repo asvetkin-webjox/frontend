@@ -1,7 +1,6 @@
 import NumberFormat from 'react-number-format';
 
 export const phoneMask = (props) => {
-  // console.log('phoneMask -> type', type);
   const { inputRef, onChange, ...other } = props;
 
   return (

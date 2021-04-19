@@ -18,18 +18,19 @@ export const useAuth = (
   const { dispatch } = authContext;
   const loginUrl = 'http://45.80.71.95:3000/login';
   const registerUrl = 'http://45.80.71.95:8281/signup';
+  const resetUrl = `http://45.80.71.95:8281/forget?username=${username}`;
+
   const body = JSON.stringify({
     username,
     password,
     passwordRetyped,
   });
-  const { loginHeader } = headers;
+  const { loginHeader, getHeader } = headers;
 
   const loginHandler = async () => {
     setLoading(true);
     setError(false);
 
-    // if (handlePass) {
     try {
       const res = await fetch(loginUrl, loginHeader(body));
 
@@ -44,7 +45,6 @@ export const useAuth = (
     } catch (error) {
       setError(error);
     }
-    // }
 
     return setLoading(false);
   };
@@ -55,15 +55,12 @@ export const useAuth = (
 
     try {
       const res = await fetch(registerUrl, loginHeader(body));
-      // console.log('registerHandler -> res', res.text());
       const data = await res.text();
       console.log('registerHandler -> data', data);
-      // console.log('registerHandler -> data', data);
+
       dispatch({ type: SUCCESS });
       sessionStorage.setItem('isAuth', true);
       handleClose();
-      /* send e-mail to user */
-      // await sendMail()
 
       setRegistered(true);
     } catch (error) {
@@ -78,10 +75,14 @@ export const useAuth = (
     setError(false);
 
     try {
-      // await sendMail()
+      const res = await fetch(resetUrl, getHeader());
+      console.log('resetHandler -> res', res);
+      const data = await res.text();
+      console.log('resetHandler -> data', data);
 
-      setReset('Restablecimiento de contraseña');
+      setReset(true);
     } catch (error) {
+      console.log('resetHandler -> error', error);
       setError(error);
     }
 

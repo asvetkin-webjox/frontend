@@ -4,6 +4,7 @@ import { UpTrend } from 'components/UI/Icons/UpTrend';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   container: {
+    display: 'flex',
     [breakpoints.down('md')]: {
       fontSize: '0.8rem',
     },
