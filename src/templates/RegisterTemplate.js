@@ -16,6 +16,7 @@ const useStyles = makeStyles(({ palette: { blueLight } }) => ({
   },
   divider: {
     background: blueLight,
+    marginBottom: '20px',
   },
 }));
 
@@ -60,9 +61,7 @@ export const RegisterTemplate = ({ children, name, isOpened, handleClose }) => {
       <ModalHeader name={name} />
       <LoadingContainer loading={isLoading} />
       {children(combinedObject)}
-      <div style={{ marginBottom: '20px' }}>
-        <Divider classes={{ root: divider }} />
-      </div>
+      <Divider classes={{ root: divider }} />
       <SocialModal name={name} />
       <XButton handleClose={handleClose} />
     </div>
