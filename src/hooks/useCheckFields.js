@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { modalMessages } from 'lib/messages';
 import { ifAllFalse, checkEmail } from 'utils/checkFields';
 
-export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
+export const useCheckFields = ({ isInputs }, isOpened, isAccept) => {
   const {
     shortPassword,
     weakPassword,
@@ -26,7 +26,7 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
     repeat === '' || password !== repeat,
     !name,
     !surname,
-    // !isTerms,
+    !isAccept,
   ];
   const conditionsLogin = [!checkEmail(mail), password.length < 8];
   const conditionsForgot = [!checkEmail(mail)];
@@ -39,7 +39,7 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
     { repeat: wrongRetypePass },
     { name: wrongName },
     { surname: wrongSurname },
-    // { terms: notAccepted },
+    { terms: notAccepted },
   ];
 
   const checkConditions = (conds) =>
@@ -61,7 +61,7 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
     if (isOpened === 'Forgot') return checkConditions(conditionsForgot);
 
     return checkConditions(conditions);
-  }, [isInputs, isTerms, isOpened]);
+  }, [isInputs, isAccept, isOpened]);
 
   const handlePass = () => {
     const checked = ifAllFalse(isErrors);
