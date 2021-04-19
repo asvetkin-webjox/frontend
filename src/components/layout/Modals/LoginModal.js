@@ -6,6 +6,7 @@ import { ModalButtons } from 'components/layout/Modals/ModalButtons';
 import { CustomButton } from 'components/UI/Buttons/CustomButton';
 import { loginNames } from 'components/layout/Modals/loginNames';
 import { RegisterInput } from 'components/UI/Input/RegisterInput';
+import { Error } from 'components/UI/Error';
 
 export const LoginModal = ({ handleClose, isOpened, idRegister, modalHandler }) => {
   const { button, blueButton, bigButton } = sharedStyles();
@@ -13,9 +14,9 @@ export const LoginModal = ({ handleClose, isOpened, idRegister, modalHandler }) 
   return (
     <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister}>
       <RegisterTemplate name="Войти в аккаунт" isOpened={isOpened} handleClose={handleClose}>
-        {({ combinedFunc, ...rest }) => (
+        {({ combinedFunc, isAuthError, ...rest }) => (
           <Fragment>
-            <div>
+            <div style={{ position: 'relative' }}>
               {loginNames.map((el) => {
                 const { icon, placeholder, name } = el;
 
@@ -23,6 +24,7 @@ export const LoginModal = ({ handleClose, isOpened, idRegister, modalHandler }) 
                   <RegisterInput icon={icon} placeholder={placeholder} name={name} {...rest} />
                 );
               })}
+              {isAuthError && <Error name="Логин/пароль неверные" />}
             </div>
             <div style={{ marginBottom: '20px' }}>
               <CustomButton

@@ -18,6 +18,7 @@ const useStyles = makeStyles(({ breakpoints, palette: { primary }, shadow }) => 
     boxShadow: shadow.primary,
     outline: 'none',
     borderRadius: '4px',
+    overflowY: 'scroll',
     '&:after': {
       content: '""',
       position: 'absolute',
@@ -33,7 +34,6 @@ const useStyles = makeStyles(({ breakpoints, palette: { primary }, shadow }) => 
     [breakpoints.down('sm')]: {
       width: '100%',
       height: '100%',
-      overflowY: 'scroll',
     },
   },
 }));
@@ -55,7 +55,7 @@ export const ModalContainer = ({ children, handleClose, isOpened, id, isToggle }
       keepMounted={isFirst}
       disablePortal
       BackdropProps={{
-        timeout: 300,
+        timeout: 3000,
       }}
     >
       <Fade in={isOpened === id}>
