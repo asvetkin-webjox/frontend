@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Fade } from 'utils/transitions';
 import { DropDown } from 'components/UI/DropDown/DropDown';
 import { useRegionSelect } from 'hooks/useRegionSelect';
 
@@ -8,7 +7,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   icon: {
     right: '14px',
     zIndex: '100',
-    transform: (toggledMenu) => (toggledMenu ? 'rotate(90deg)' : 'rotate(0deg)'),
+    transform: ({ toggledMenu }) => (toggledMenu ? 'rotate(90deg)' : 'rotate(0deg)'),
   },
   dropDown: {
     position: 'absolute',
@@ -32,7 +31,7 @@ export const DropRegion = ({
   matchesMobile,
   matchesTablet,
 }) => {
-  const { icon, dropDown } = useStyles();
+  const { icon, dropDown } = useStyles({ toggledMenu });
   const { isSelected, selectHandler } = useRegionSelect(regions, regionHandler);
   const check = matchesMobile || matchesTablet;
 
@@ -46,11 +45,9 @@ export const DropRegion = ({
           </div>
         </Fragment>
       )}
-      {/* // <Fade in={toggledMenu}> */}
       <div className={dropDown}>
         {toggledMenu && <DropDown regions={regions} selectHandler={selectHandler} />}
       </div>
-      {/* // </Fade> */}
     </Fragment>
   );
 };

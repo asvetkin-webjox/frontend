@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { modalMessages } from 'lib/messages';
 import { ifAllFalse, checkEmail } from 'utils/checkFields';
 
-export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
+export const useCheckFields = ({ isInputs }, isOpened, isAccept) => {
   const {
     shortPassword,
     weakPassword,
@@ -15,6 +15,7 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
   } = modalMessages;
   const { password = '', mail = '', phone = '', repeat = '', name = '', surname = '' } = isInputs;
   const [isErrors, setErrors] = useState(false);
+  console.log('useCheckFields -> isErrors', isErrors);
 
   const [isPassed, setPassed] = useState(true);
   const conditions = [
@@ -25,11 +26,11 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
     repeat === '' || password !== repeat,
     !name,
     !surname,
-    // !isTerms,
+    !isAccept,
   ];
-  const conditionsLogin = [password.length < 8, !checkEmail(mail)];
+  const conditionsLogin = [!checkEmail(mail), password.length < 8];
   const conditionsForgot = [!checkEmail(mail)];
-  // const loginTexts = [password.length < 8, !checkEmail(mail)];
+
   const texts = [
     { mail: wrongEmail },
     { password: shortPassword },
@@ -60,11 +61,11 @@ export const useCheckFields = ({ isInputs }, isOpened, isTerms) => {
     if (isOpened === 'Forgot') return checkConditions(conditionsForgot);
 
     return checkConditions(conditions);
-  }, [isInputs, isTerms, isOpened]);
+  }, [isInputs, isAccept, isOpened]);
 
   const handlePass = () => {
     const checked = ifAllFalse(isErrors);
-    // setErrors(!checked);
+
     if (checked) return setPassed(true);
 
     return setPassed(false);

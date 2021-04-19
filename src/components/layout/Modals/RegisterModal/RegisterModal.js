@@ -9,10 +9,10 @@ import { useToggle } from 'hooks/useToggle';
 import ClickAwayListener from 'react-click-away-listener';
 import { RegisterContent } from 'components/layout/Modals/RegisterModal/RegisterContent';
 import { useMedia } from 'hooks/useMedia';
+import { Error } from 'components/UI/Error';
 
 export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler }) => {
   const { button, blueButton, bigButton } = sharedStyles();
-  const { isToggle: isAccept, toggleHandler: toggleAccept } = useToggle();
   const { toggleOff: close, toggleOn: open, isToggle: isOpen, ...toggle } = useToggle(false);
   const closePop = (e) => {
     const blankFunc = () => null;
@@ -27,23 +27,19 @@ export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler 
   return (
     <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister} isToggle={isOpen}>
       <RegisterTemplate name="Зарегистрироваться" handleClose={handleClose}>
-        {({ combinedFunc, isRegistered, isErrors, isAuthError, ...rest }) => (
+        {({ combinedFunc, isAuthError, ...rest }) => (
           <Fragment>
             {/* {!isRegistered && ( */}
-            <ClickAwayListener onClickAway={closePop}>
-              <RegisterContent
-                {...toggle}
-                {...rest}
-                open={open}
-                isOpen={isOpen}
-                isErrors={isErrors}
-              />
-            </ClickAwayListener>
+            <div style={{ position: 'relative' }}>
+              <ClickAwayListener onClickAway={closePop}>
+                <RegisterContent {...toggle} {...rest} open={open} isOpen={isOpen} />
+              </ClickAwayListener>
+              {isAuthError && <Error name="Регистрация не удалась" />}
+            </div>
             {/* )} */}
             {/* {isRegistered && !isErrors && (
               <div style={{ margin: '24px 0', fontSize: '20px' }}>Успешная регистрация</div>
             )} */}
-            {isAuthError && 'Регистрация не удалась'}
             <div style={{ marginBottom: '20px' }}>
               <CustomButton
                 name="Зарегистрироваться"
@@ -56,7 +52,7 @@ export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler 
               <ModalButtons modalHandler={modalHandler} handleClose={handleClose} />
             </div>
             <div style={{ marginBottom: '20px' }}>
-              <AcceptTerms {...rest} isToggle={isAccept} toggleHandler={toggleAccept} />
+              <AcceptTerms {...rest} />
             </div>
           </Fragment>
         )}

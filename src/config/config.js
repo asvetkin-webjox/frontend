@@ -11,6 +11,12 @@ export const headers = {
     },
     body,
   }),
+  getHeader: () => ({
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }),
   sessionHeader: (token) => ({
     method: 'GET',
     headers: {

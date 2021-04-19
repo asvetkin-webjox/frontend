@@ -8,10 +8,8 @@ export const checkEmail = (email) => {
 export const checkPassword = (pswd) => {
   const arr = pswd.split('');
 
-  if (arr.length < 7) return false;
-  if (!pswd.match(/[a-z]/i)) return false;
+  if (arr.length < 7 || !pswd.match(/[a-z]/i) || !pswd.match(/[0-9]/)) return false;
   // if (!pswd.match(/[A-Z]/)) return false;
-  if (!pswd.match(/[0-9]/)) return false;
 
   return true;
 };

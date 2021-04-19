@@ -24,13 +24,13 @@ const useStyles = makeStyles(({ palette: { primary, blueLight } }) => ({
   },
   right: {
     display: 'flex',
-    transform: 'translateX(8px)',
+    transform: 'translate(8px, 1px)',
     cursor: 'pointer',
     position: 'relative',
     zIndex: '1',
   },
   info: {
-    transform: 'translateX(-8px)',
+    transform: 'translate(-7px, 0px)',
     zIndex: '1',
     cursor: 'pointer',
   },
