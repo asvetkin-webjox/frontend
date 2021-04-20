@@ -8,10 +8,11 @@ import { SearchTableMobile } from 'components/layout/SearchTable/SearchTableMobi
 const Index = () => {
   const { matchesMobile } = useMedia();
 
-  const search = (props) =>
-    matchesMobile
+  const search = (props) => {
+    return matchesMobile
       ? [<SearchTableMobile {...props} />, <Pagination {...props} />]
       : [<SearchTable {...props} />, <Pagination {...props} />];
+  };
 
   return <Template>{(props) => search(props)}</Template>;
 };

@@ -4,14 +4,15 @@ import { URL } from 'backend/config';
 
 export const useGenerateUrl = () => {
   const [isPage, setPage] = useState(1);
+  console.log('useGenerateUrl -> isPage', isPage);
   const defaultUrl = `${URL}/data?page=${isPage}&perPage=20`;
-  const defaultMobile = `${URL}/data?page=${isPage}&perPage=1`;
+  // const defaultMobile = `${URL}/data?page=${isPage}&perPage=20`;
 
   const [isRegion, setRegion] = useState(false);
   const [isSearch, setSearch] = useState(false);
   const [isSort, setSort] = useState(false);
   const [isOrder, setOrder] = useState(false);
-  const { matchesMobile, matchesDesktop } = useMedia();
+  const { matchesMobile, matchesDesktop, matchesTablet } = useMedia();
   const [isUrl, setUrl] = useState(defaultUrl);
 
   const searchHandler = (e) => {
@@ -23,8 +24,10 @@ export const useGenerateUrl = () => {
   };
 
   const generateUrl = () => {
-    const perPage = matchesMobile ? '1' : '20';
-    const url = `${URL}/data?page=${isPage}&perPage=${perPage}`;
+    // const perPage = matchesMobile ? '1' : '20';
+    const perPage = matchesMobile ? Math.ceil(isPage / 20) : isPage;
+    // const url = `${URL}/data?page=${isPage}&perPage=20`;
+    const url = `${URL}/data?page=${perPage}&perPage=20`;
     const withRegion = `&region=${isRegion}`;
     const withSearch = `&search=${isSearch}`;
     const withSort = `&sortkey=${isSort}`;
@@ -45,11 +48,12 @@ export const useGenerateUrl = () => {
 
   useEffect(() => {
     setSearch('');
+    setPage(1);
 
-    if (matchesMobile) return setUrl(defaultMobile);
+    // if (matchesMobile) return setUrl(defaultMobile);
 
-    return setUrl(defaultUrl);
-  }, [matchesDesktop, matchesMobile]);
+    // return setUrl(defaultUrl);
+  }, [matchesDesktop, matchesTablet, matchesMobile]);
 
   useEffect(() => {
     setPage(1);

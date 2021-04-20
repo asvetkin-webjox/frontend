@@ -50,8 +50,8 @@ export const Template = ({ children }) => {
   };
 
   const { data = [], regions } = isData;
-  const [, pages] = data;
-  const dataObject = { items: data, pages, ...combinedObject };
+  const [items, pages] = data;
+  const dataObject = { items, pages, ...combinedObject };
 
   return (
     <div className={wholeContainer} onClick={resetHandler}>
