@@ -6,13 +6,8 @@ export const useFetchData = () => {
   const regionUrl = `${URL}/regions`;
   const [isLoading, setLoading] = useState(false);
   const [isData, setData] = useState([]);
-  const { isUrl, isSearch, isRegion, isSort, ...rest } = useGenerateUrl();
-  const [isPage, setPage] = useState(1);
+  const { isUrl, isRegion, isPage, ...rest } = useGenerateUrl();
   const [isRegions, setRegions] = useState(null);
-
-  useEffect(() => {
-    setPage(1);
-  }, [isRegion, isSearch, isSort]);
 
   useEffect(async () => {
     setLoading(true);
@@ -37,11 +32,11 @@ export const useFetchData = () => {
 
   return {
     isPage,
-    isSearch,
     isRegion,
     isUrl,
     isLoading,
     isData,
+    setData,
     ...rest,
   };
 };

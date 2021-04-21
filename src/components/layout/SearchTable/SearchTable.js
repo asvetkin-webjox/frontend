@@ -18,7 +18,6 @@ const useStyles = makeStyles(({ palette: { primary } }) => ({
 const SearchTables = ({ items = [], isPage, isLoading, ...rest }) => {
   const { container } = useStyles();
   const { matchesTablet } = useMedia();
-  const [data] = items;
 
   const sizes = [51, 164, 122, 123, 122, 122, 123, 123];
   const sizesIpadHeader = [50, 163, 121, 60, 61, 60, 60, 122];
@@ -32,16 +31,16 @@ const SearchTables = ({ items = [], isPage, isLoading, ...rest }) => {
     <div className={container}>
       <TableHeader sizes={allSizesHeader} {...rest} />
       <LoadingContainer loading={isLoading} />
-      <TableEls sizes={allSizesTable} data={data} isPage={isPage} isLoading={isLoading} />
+      <TableEls sizes={allSizesTable} data={items} isPage={isPage} isLoading={isLoading} />
     </div>
   );
 };
-
-function areEqual(prevProps, nextProps) {
+/* prevent from recreating DOM if nothing changes */
+const areEqual = (prevProps, nextProps) => {
   const { isUrl, isLoading } = prevProps;
   const { isUrl: nextUrl, isLoading: loading } = nextProps;
 
   return isUrl === nextUrl && isLoading === loading;
-}
+};
 
 export const SearchTable = React.memo(SearchTables, areEqual);
