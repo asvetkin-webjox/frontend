@@ -27,16 +27,13 @@ export const useAuth = (
     const { url, header } = data;
     setLoading(true);
     setError(false);
+    setReset(false);
 
     try {
       const res = await fetch(url, header);
-      console.log('authHandler -> res', res);
-      console.log('authHandler -> status', status);
-      console.log('isReset', isReset);
-      const { error = '', token = '' } = await res.json();
-      console.log('authHandler -> error', error);
+      const { error, token = '' } = await res.json();
 
-      if (!error && status === 'reset') return [setReset(true), setLoading(false)];
+      if (status === 'reset' && !error) setReset(true);
       if (error) setError(error);
 
       if (token) {
