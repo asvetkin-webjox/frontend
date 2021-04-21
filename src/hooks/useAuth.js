@@ -29,7 +29,6 @@ export const useAuth = (
 
     try {
       const res = await fetch(loginUrl, postHeader(loginBody));
-      console.log('loginHandler -> res', res);
 
       const { token } = await res.json();
 
