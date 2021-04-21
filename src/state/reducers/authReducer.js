@@ -1,6 +1,6 @@
 import { failedLogin, successRegister } from 'utils/messages';
-import { cookiesClear } from 'components/state/cookies';
-import { SUCCESS, ERROR, LOGOUT, SUCCESS_REGISTER } from 'components/state/constants';
+import { cookiesClear } from 'state/cookies';
+import { SUCCESS, ERROR, LOGOUT, SUCCESS_REGISTER } from 'state/constants';
 
 export const authReducer = (currentState, { message, type }) => {
   switch (type) {

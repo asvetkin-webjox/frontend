@@ -1,5 +1,5 @@
-import { MENU_OPEN, DIMMED_BG, RESET } from 'components/state/constants';
-import { ifToggled } from 'components/state/actions/toggle-action';
+import { MENU_OPEN, DIMMED_BG, RESET } from 'state/constants';
+import { ifToggled } from 'state/actions/toggle-action';
 
 export const toggleReducer = (currentState, { type }) => {
   const { dimmed, toggledMenu } = currentState;

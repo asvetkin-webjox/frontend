@@ -34,7 +34,7 @@ export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler 
               <ClickAwayListener onClickAway={closePop}>
                 <RegisterContent {...toggle} {...rest} open={open} isOpen={isOpen} />
               </ClickAwayListener>
-              {isAuthError && <Error name="Регистрация не удалась" />}
+              {isAuthError && <Error name={isAuthError} />}
             </div>
             {/* )} */}
             {/* {isRegistered && !isErrors && (

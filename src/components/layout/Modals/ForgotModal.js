@@ -17,7 +17,6 @@ export const ForgotModal = ({ handleClose, isOpened, idRegister, modalHandler })
       <RegisterTemplate name="Восстановить пароль" isOpened={isOpened} handleClose={handleClose}>
         {({ combinedFunc, isAuthError, handlePass, ...rest }) => (
           <Fragment>
-            {console.log('ForgotModal -> isAuthError', isAuthError)}
             <div style={{ position: 'relative' }}>
               {onlyEmail.map(({ icon, placeholder, name }) => (
                 <RegisterInput icon={icon} placeholder={placeholder} name={name} {...rest} />

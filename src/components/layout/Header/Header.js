@@ -4,7 +4,7 @@ import { Logo } from 'components/UI/Logo';
 import { useOpenModal } from 'hooks/useOpenModal';
 import { ModalsContainer } from 'components/layout/Modals/ModalsContainer';
 import { GuestHeader } from 'components/layout/Header/GuestHeader';
-import { AuthContext } from 'components/state/context/auth-context';
+import { AuthContext } from 'state/context/auth-context';
 import { NoSsr } from '@material-ui/core';
 import { UserHeader } from 'components/layout/Header/UserHeader';
 

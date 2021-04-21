@@ -1,6 +1,6 @@
 import React, { useReducer, createContext, useEffect } from 'react';
-import { authReducer } from 'components/state/reducers/authReducer';
-import { LOGOUT } from 'components/state/constants';
+import { authReducer } from 'state/reducers/authReducer';
+import { LOGOUT } from 'state/constants';
 
 export const AuthContext = createContext();
 

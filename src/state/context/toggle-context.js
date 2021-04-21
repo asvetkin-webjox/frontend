@@ -1,6 +1,6 @@
 import React, { useReducer, createContext } from 'react';
-import { toggleReducer } from 'components/state/reducers/toggleReducer';
-import { MENU_OPEN, RESET } from 'components/state/constants';
+import { toggleReducer } from 'state/reducers/toggleReducer';
+import { MENU_OPEN, RESET } from 'state/constants';
 
 export const ToggleContext = createContext();
 
