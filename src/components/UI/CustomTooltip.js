@@ -22,5 +22,13 @@ export const CustomTooltip = ({ title = '', mobile, ...rest }) => {
   const classes = useStyles();
   const placementPosition = mobile ? 'right-end' : 'bottom';
 
-  return <Tooltip arrow classes={classes} title={title} {...rest} placement={placementPosition} />;
+  return (
+    <Tooltip
+      arrow={!mobile}
+      classes={classes}
+      title={title}
+      {...rest}
+      placement={placementPosition}
+    />
+  );
 };
