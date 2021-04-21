@@ -10,6 +10,7 @@ export const useMedia = () => {
   const matchesTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
   const matchesMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const matchesDesktop = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesHD = useMediaQuery(theme.breakpoints.up('xl'));
   const matchBoth = matchesTablet || matchesMobile;
   const matchAll = matchesTablet || matchesMobile || matchesDesktop;
 
@@ -19,6 +20,7 @@ export const useMedia = () => {
     matchBoth,
     matchAll,
     matchesDesktop,
+    matchesHD,
     isChanged,
     changeHandler,
   };

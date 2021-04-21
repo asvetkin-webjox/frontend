@@ -4,6 +4,7 @@ import { Header } from 'components/layout/Header/Header';
 import { SearchInputs } from 'components/layout/SearchInputs/SearchInputs';
 import { ToggleContext } from 'components/state/context/toggle-context';
 import { useFetchData } from 'hooks/useFetchData';
+import { SideMenu } from 'components/layout/SideMenu/SideMenu';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   wholeContainer: {
@@ -56,6 +57,7 @@ export const Template = ({ children }) => {
   return (
     <div className={wholeContainer} onClick={resetHandler}>
       <div className={container}>
+        <SideMenu />
         <div style={{ marginBottom: '12px' }}>
           <Header />
         </div>
