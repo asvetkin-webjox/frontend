@@ -15,14 +15,14 @@ export const ForgotModal = ({ handleClose, isOpened, idRegister, modalHandler })
   return (
     <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister}>
       <RegisterTemplate name="Восстановить пароль" isOpened={isOpened} handleClose={handleClose}>
-        {({ combinedFunc, isAuthError, handlePass, ...rest }) => (
+        {({ combinedFunc, isAuthError, handlePass, isReset, ...rest }) => (
           <Fragment>
-            {console.log('ForgotModal -> isAuthError', isAuthError)}
             <div style={{ position: 'relative' }}>
               {onlyEmail.map(({ icon, placeholder, name }) => (
                 <RegisterInput icon={icon} placeholder={placeholder} name={name} {...rest} />
               ))}
               {isAuthError && <Error name={isAuthError} />}
+              {isReset && <Error name="Пароль отправлен на e-mail" />}
             </div>
             <div style={{ marginBottom: '20px' }}>
               <CustomButton

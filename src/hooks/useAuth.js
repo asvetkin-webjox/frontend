@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
-import { AuthContext } from 'components/state/context/auth-context';
-import { SUCCESS } from 'components/state/constants';
-import { cookiesSet } from 'components/state/cookies';
+import { AuthContext } from 'state/context/auth-context';
+import { SUCCESS } from 'state/constants';
+import { cookiesSet } from 'state/cookies';
 import { headers, URL, body } from 'config/config';
 
 export const useAuth = (
@@ -23,67 +23,38 @@ export const useAuth = (
   const registerBody = body({ username, password, passwordRetyped });
   const { postHeader, getHeader } = headers;
 
-  const loginHandler = async () => {
+  const authHandler = async (data = {}, status = '') => {
+    const { url, header } = data;
     setLoading(true);
     setError(false);
+    setReset(false);
 
     try {
-      const res = await fetch(loginUrl, postHeader(loginBody));
+      const res = await fetch(url, header);
+      const { error, token = '' } = await res.json();
 
-      const { token } = await res.json();
+      if (status === 'reset' && !error) setReset(true);
+      if (error) setError(error);
 
       if (token) {
         dispatch({ type: SUCCESS });
         sessionStorage.setItem('isAuth', true);
         cookiesSet(token, 600000);
         handleClose();
+
+        if (status === 'register') setRegistered(true);
       }
-    } catch (error) {
+    } catch ({ error = 'Неизвестная ошибка' }) {
       setError(error);
     }
 
     return setLoading(false);
   };
 
-  const registerHandler = async () => {
-    setLoading(true);
-    setError(false);
-
-    try {
-      const res = await fetch(registerUrl, postHeader(registerBody));
-      const data = await res.text();
-      console.log('registerHandler -> data', data);
-
-      dispatch({ type: SUCCESS });
-      sessionStorage.setItem('isAuth', true);
-      handleClose();
-
-      setRegistered(true);
-    } catch (error) {
-      setError(error);
-    }
-
-    return setLoading(false);
-  };
-
-  const resetHandler = async () => {
-    setLoading(true);
-    setError(false);
-
-    try {
-      const res = await fetch(resetUrl, getHeader());
-      console.log('resetHandler -> res', res);
-      const data = await res.text();
-      console.log('resetHandler -> data', data);
-
-      setReset(true);
-    } catch (error) {
-      console.log('resetHandler -> error', error);
-      setError(error);
-    }
-
-    return setLoading(false);
-  };
+  const loginHandler = () => authHandler({ url: loginUrl, header: postHeader(loginBody) });
+  const registerHandler = () =>
+    authHandler({ url: registerUrl, header: postHeader(registerBody) }, 'register');
+  const resetHandler = () => authHandler({ url: resetUrl, header: getHeader() }, 'reset');
 
   return {
     isLoading,

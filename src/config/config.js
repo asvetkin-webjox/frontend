@@ -4,7 +4,7 @@ export const ID_FORGOT = 'Forgot';
 export const ID_LOGOUT = 'Logout';
 export const URL = 'http://45.80.71.95:8281';
 
-export const body = (...cred) =>
+export const body = (cred) =>
   JSON.stringify({
     ...cred,
   });
@@ -15,7 +15,7 @@ export const headers = {
     headers: {
       'Content-Type': 'application/json',
     },
-    headerBody,
+    body: headerBody,
   }),
   getHeader: () => ({
     method: 'GET',

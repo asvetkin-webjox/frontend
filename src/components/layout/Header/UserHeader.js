@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { LOGOUT } from 'components/state/constants';
-import { AuthContext } from 'components/state/context/auth-context';
+import { LOGOUT } from 'state/constants';
+import { AuthContext } from 'state/context/auth-context';
 import { CustomButton } from 'components/UI/Buttons/CustomButton';
 import { ID_LOGOUT } from 'config/config';
 import { sharedStyles } from 'lib/sharedStyles';

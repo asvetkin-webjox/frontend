@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { UpDown } from 'components/UI/UpDown';
-import { ToggleContext } from 'components/state/context/toggle-context';
+import { ToggleContext } from 'state/context/toggle-context';
 import { TableInfo } from 'components/UI/TableInfo';
 
 const useStyles = makeStyles(({ palette: { primary, blueLight } }) => ({
