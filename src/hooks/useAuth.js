@@ -2,8 +2,7 @@ import { useContext, useState } from 'react';
 import { AuthContext } from 'components/state/context/auth-context';
 import { SUCCESS } from 'components/state/constants';
 import { cookiesSet } from 'components/state/cookies';
-import { URL } from 'backend/config';
-import { headers } from 'config/config';
+import { headers, URL, body } from 'config/config';
 
 export const useAuth = (
   { mail: username, password, repeat: passwordRetyped },
@@ -16,23 +15,21 @@ export const useAuth = (
   const [isAuthError, setError] = useState(false);
   const [isReset, setReset] = useState(false);
   const { dispatch } = authContext;
-  const loginUrl = 'http://45.80.71.95:3000/login';
-  const registerUrl = 'http://45.80.71.95:8281/signup';
-  const resetUrl = `http://45.80.71.95:8281/forget?username=${username}`;
+  const loginUrl = `${URL}/login`;
+  const registerUrl = `${URL}/signup`;
+  const resetUrl = `${URL}/forget?username=${username}`;
 
-  const body = JSON.stringify({
-    username,
-    password,
-    passwordRetyped,
-  });
-  const { loginHeader, getHeader } = headers;
+  const loginBody = body({ username, password });
+  const registerBody = body({ username, password, passwordRetyped });
+  const { postHeader, getHeader } = headers;
 
   const loginHandler = async () => {
     setLoading(true);
     setError(false);
 
     try {
-      const res = await fetch(loginUrl, loginHeader(body));
+      const res = await fetch(loginUrl, postHeader(loginBody));
+      console.log('loginHandler -> res', res);
 
       const { token } = await res.json();
 
@@ -54,7 +51,7 @@ export const useAuth = (
     setError(false);
 
     try {
-      const res = await fetch(registerUrl, loginHeader(body));
+      const res = await fetch(registerUrl, postHeader(registerBody));
       const data = await res.text();
       console.log('registerHandler -> data', data);
 

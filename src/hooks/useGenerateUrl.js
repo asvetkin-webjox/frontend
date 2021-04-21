@@ -4,7 +4,6 @@ import { URL } from 'backend/config';
 
 export const useGenerateUrl = () => {
   const [isPage, setPage] = useState(1);
-  console.log('useGenerateUrl -> isPage', isPage);
   const defaultUrl = `${URL}/data?page=${isPage}&perPage=20`;
   // const defaultMobile = `${URL}/data?page=${isPage}&perPage=20`;
 
