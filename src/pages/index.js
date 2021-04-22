@@ -1,20 +1,14 @@
-import React from 'react';
-import { Template } from 'templates/Template';
-import { SearchTable } from 'components/layout/SearchTable/SearchTable';
-import { Pagination } from 'components/UI/Pagination';
-import { useMedia } from 'hooks/useMedia';
-import { SearchTableMobile } from 'components/layout/SearchTable/SearchTableMobile';
+import React, { useContext } from 'react';
+import { Table } from 'components/pages/Table';
+import { AuthContext } from 'state/context/auth-context';
+import { Index } from 'components/pages/Index';
 
-const Index = () => {
-  const { matchesMobile } = useMedia();
+const index = () => {
+  const {
+    authState: { isAuth },
+  } = useContext(AuthContext);
 
-  const search = (props) => {
-    return matchesMobile
-      ? [<SearchTableMobile {...props} />, <Pagination {...props} />]
-      : [<SearchTable {...props} />, <Pagination {...props} />];
-  };
-
-  return <Template>{(props) => search(props)}</Template>;
+  return isAuth ? <Table /> : <Index />;
 };
 
-export default Index;
+export default index;

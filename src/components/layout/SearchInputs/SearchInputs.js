@@ -9,7 +9,7 @@ export const SearchInputs = (props) => {
 
   return (
     <Fragment>
-      <Typography variant="h2" component="h2" style={{ marginBottom: '16px' }}>
+      <Typography variant="h3" component="h3" style={{ marginBottom: '16px' }}>
         База ниш
       </Typography>
       {matchesMobile ? <SearchMobile {...props} /> : <SearchDesktop {...props} />}

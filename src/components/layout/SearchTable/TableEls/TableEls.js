@@ -1,16 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { TableEl } from 'components/layout/SearchTable/TableEls/TableEl';
 import { NothingFound } from 'components/layout/SearchTable/TableEls/NothingFound';
 
-const useStyles = makeStyles(({ palette: { primary } }) => ({
-  container: {
-    display: 'block',
-  },
-}));
-
-export const TableEls = ({ sizes, data, isPage, isLoading }) => {
-  const { container } = useStyles();
+export const TableEls = ({ data, isLoading, isIndex, ...rest }) => {
   const arrLength = data && data.length;
 
   const checkIfBlank = (() => {
@@ -22,14 +14,14 @@ export const TableEls = ({ sizes, data, isPage, isLoading }) => {
         <TableEl
           data={el}
           index={i}
-          sizes={sizes}
           key={`${i}table`}
-          isPage={isPage}
           arrLength={arrLength}
+          isIndex={isIndex}
+          {...rest}
         />
       ))
     );
   })();
 
-  return <div className={container}>{checkIfBlank}</div>;
+  return <div>{checkIfBlank}</div>;
 };

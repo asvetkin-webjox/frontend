@@ -15,9 +15,9 @@ export const useFetchData = () => {
     try {
       if (!isRegions) {
         const req = await Promise.all([fetch(isUrl), fetch(regionUrl)]);
-        console.log('useFetchData -> req', req);
+
         const [data, regions] = await Promise.all(req.map((res) => res.json()));
-        console.log('useFetchData -> data', data);
+
         setRegions(regions);
         setData({ data, regions });
       } else {
