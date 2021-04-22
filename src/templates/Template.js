@@ -6,6 +6,7 @@ import { ToggleContext } from 'state/context/toggle-context';
 import { useFetchData } from 'hooks/useFetchData';
 import { IndexHeader } from 'components/layout/Index/IndexHeader';
 import { NoSsr } from '@material-ui/core';
+import { IndexAnnotation } from 'components/layout/Index/IndexAnnotation';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   wholeContainer: {
@@ -64,8 +65,9 @@ export const Template = ({ children, isIndex = false }) => {
           </div>
           {isIndex && <IndexHeader />}
           <div style={{ marginBottom: '40px' }}>
-            <SearchInputs regions={regions} {...combinedObject} />
+            <SearchInputs regions={regions} {...dataObject} />
           </div>
+          {isIndex && <IndexAnnotation />}
           {children(dataObject)}
         </div>
       </div>
