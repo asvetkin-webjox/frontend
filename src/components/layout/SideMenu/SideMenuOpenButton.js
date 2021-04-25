@@ -16,7 +16,10 @@ const SideMenuOpenButton = () => {
   } = useContext(SideMenuContext);
 
   return isAuth && !isSideMenuOpen ? (
-    <IconButton onClick={handleSideMenuOpen} style={{ padding: 0, transform: 'translateY(-3px)' }}>
+    <IconButton
+      onClick={handleSideMenuOpen}
+      style={{ padding: 0, marginRight: 15, transform: 'translateY(-3px)' }}
+    >
       <MenuIcon />
     </IconButton>
   ) : null;
