@@ -25,6 +25,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
       padding: '197px 0 32px 0',
     },
     [breakpoints.down('sm')]: {
+      margin: '0 auto',
       maxWidth: '197px',
       padding: '66px 0 42px 0',
       fontSize: '2rem',

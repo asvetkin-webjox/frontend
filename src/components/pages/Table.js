@@ -5,7 +5,7 @@ import { Pagination } from 'components/UI/Pagination';
 import { useMedia } from 'hooks/useMedia';
 import { SearchTableMobile } from 'components/layout/SearchTable/SearchTableMobile';
 
-export const Table = ({}) => {
+export const Table = ({ tableHandler }) => {
   const { matchesMobile } = useMedia();
 
   const search = (props) => {
@@ -14,5 +14,5 @@ export const Table = ({}) => {
       : [<SearchTable {...props} />, <Pagination {...props} />];
   };
 
-  return <Template>{(props) => search(props)}</Template>;
+  return <Template tableHandler={tableHandler}>{(props) => search(props)}</Template>;
 };

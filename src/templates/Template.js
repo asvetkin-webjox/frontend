@@ -40,13 +40,13 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
 }));
 
-export const Template = ({ children, isIndex = false }) => {
+export const Template = ({ children, tableHandler, isIndex = false }) => {
   const {
     toggleState: { dimmed },
     resetHandler,
   } = useContext(ToggleContext);
   const { wholeContainer, container } = useStyles({ dimmed });
-  const { isData, isLoading, ...rest } = useFetchData();
+  const { isData, isLoading, ...rest } = useFetchData(isIndex);
   const combinedObject = {
     isLoading,
     ...rest,
@@ -54,7 +54,7 @@ export const Template = ({ children, isIndex = false }) => {
 
   const { data = [], regions } = isData;
   const [items, pages] = data;
-  const dataObject = { items, pages, isIndex, ...combinedObject };
+  const dataObject = { items, pages, isIndex, tableHandler, ...combinedObject };
 
   return (
     <NoSsr>
