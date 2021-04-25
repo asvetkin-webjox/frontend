@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Header } from 'components/layout/Header/Header';
 import { SearchInputs } from 'components/layout/SearchInputs/SearchInputs';
-import { ToggleContext } from 'components/state/context/toggle-context';
+import { ToggleContext } from 'state/context/toggle-context';
 import { useFetchData } from 'hooks/useFetchData';
 import SideMenu from 'components/layout/SideMenu/SideMenuContainer';
 

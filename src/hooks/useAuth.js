@@ -1,14 +1,14 @@
 import { useContext, useState } from 'react';
-import { AuthContext } from 'components/state/context/auth-context';
-import { SUCCESS } from 'components/state/constants';
-import { cookiesSet } from 'components/state/cookies';
+import { AuthContext } from 'state/context/auth-context';
+import { SUCCESS } from 'state/constants';
+import { cookiesSet } from 'state/cookies';
 import { URL } from 'backend/config';
 import { headers } from 'config/config';
 
 export const useAuth = (
   { mail: username, password, repeat: passwordRetyped },
   handlePass,
-  handleClose,
+  handleClose
 ) => {
   const authContext = useContext(AuthContext);
   const [isLoading, setLoading] = useState(false);

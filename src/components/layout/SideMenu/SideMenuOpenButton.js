@@ -1,6 +1,6 @@
 import IconButton from '@material-ui/core/IconButton';
-import { AuthContext } from 'components/state/context/auth-context';
-import { SideMenuContext } from 'components/state/context/sideMenu-context';
+import { AuthContext } from 'state/context/auth-context';
+import { SideMenuContext } from 'state/context/sideMenu-context';
 
 import { MenuIcon } from 'components/UI/Icons/MenuIcon';
 import { useContext } from 'react';

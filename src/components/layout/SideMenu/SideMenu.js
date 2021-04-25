@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
-import { SideMenuContext } from 'components/state/context/sideMenu-context';
+import { SideMenuContext } from 'state/context/sideMenu-context';
 import { CloseIcon } from 'components/UI/Icons/CloseIcon';
 
 import { ACCOUNT_MENU } from './menu.config';

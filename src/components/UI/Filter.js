@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { ToggleContext } from 'components/state/context/toggle-context';
+import { ToggleContext } from 'state/context/toggle-context';
 import { useMedia } from 'hooks/useMedia';
 import { FilterIcon } from 'components/UI/Icons/FilterIcon';
 import { DropRegion } from 'components/UI/DropDown/DropRegion';
