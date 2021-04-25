@@ -7,3 +7,5 @@ export const SUCCESS_REGISTER = 'SUCCESS_REGISTER';
 export const MENU_OPEN = 'MENU_OPEN';
 export const DIMMED_BG = 'DIMMED_BG';
 export const RESET = 'RESET';
+export const SET_SEARCH = 'SET_SEARCH';
+export const CLEAR_SEARCH = 'CLEAR_SEARCH';

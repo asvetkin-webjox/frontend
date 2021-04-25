@@ -4,6 +4,9 @@ import { Header } from 'components/layout/Header/Header';
 import { SearchInputs } from 'components/layout/SearchInputs/SearchInputs';
 import { ToggleContext } from 'state/context/toggle-context';
 import { useFetchData } from 'hooks/useFetchData';
+import { IndexHeader } from 'components/layout/Index/IndexHeader';
+import { NoSsr } from '@material-ui/core';
+import { IndexAnnotation } from 'components/layout/Index/IndexAnnotation';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   wholeContainer: {
@@ -37,13 +40,13 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
 }));
 
-export const Template = ({ children }) => {
+export const Template = ({ children, tableHandler, isIndex = false }) => {
   const {
     toggleState: { dimmed },
     resetHandler,
   } = useContext(ToggleContext);
   const { wholeContainer, container } = useStyles({ dimmed });
-  const { isData, isLoading, ...rest } = useFetchData();
+  const { isData, isLoading, ...rest } = useFetchData(isIndex);
   const combinedObject = {
     isLoading,
     ...rest,
@@ -51,19 +54,23 @@ export const Template = ({ children }) => {
 
   const { data = [], regions } = isData;
   const [items, pages] = data;
-  const dataObject = { items, pages, ...combinedObject };
+  const dataObject = { items, pages, isIndex, tableHandler, ...combinedObject };
 
   return (
-    <div className={wholeContainer} onClick={resetHandler}>
-      <div className={container}>
-        <div style={{ marginBottom: '12px' }}>
-          <Header />
+    <NoSsr>
+      <div className={wholeContainer} onClick={resetHandler}>
+        <div className={container}>
+          <div style={{ marginBottom: '12px' }}>
+            <Header />
+          </div>
+          {isIndex && <IndexHeader />}
+          <div style={{ marginBottom: '40px' }}>
+            <SearchInputs regions={regions} {...dataObject} />
+          </div>
+          {isIndex && <IndexAnnotation />}
+          {children(dataObject)}
         </div>
-        <div style={{ marginBottom: '40px' }}>
-          <SearchInputs regions={regions} {...combinedObject} />
-        </div>
-        {children(dataObject)}
       </div>
-    </div>
+    </NoSsr>
   );
 };

@@ -7,18 +7,16 @@ export const useMedia = () => {
   const [isChanged, setChanged] = useState(false);
   const changeHandler = () => setChanged((o) => !o);
 
-  const matchesTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
   const matchesMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const matchesDesktop = useMediaQuery(theme.breakpoints.down('sm'));
-  const matchBoth = matchesTablet || matchesMobile;
-  const matchAll = matchesTablet || matchesMobile || matchesDesktop;
+  const matchesTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const matchesDesktop1024 = useMediaQuery(theme.breakpoints.between('md', 'lg'));
+  const matchesDesktop = useMediaQuery(theme.breakpoints.up('lg'));
 
   return {
     matchesTablet,
     matchesMobile,
-    matchBoth,
-    matchAll,
     matchesDesktop,
+    matchesDesktop1024,
     isChanged,
     changeHandler,
   };

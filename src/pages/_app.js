@@ -5,6 +5,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import theme from 'lib/theme';
 import ToggleContextProvider from 'state/context/toggle-context';
 import AuthContextProvider from 'state/context/auth-context';
+import SearchContextProvider from 'state/context/search-context';
 
 class MyApp extends App {
   componentDidMount() {
@@ -20,10 +21,12 @@ class MyApp extends App {
     return (
       <ThemeProvider theme={theme}>
         <AuthContextProvider>
-          <ToggleContextProvider>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </ToggleContextProvider>
+          <SearchContextProvider>
+            <ToggleContextProvider>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </ToggleContextProvider>
+          </SearchContextProvider>
         </AuthContextProvider>
       </ThemeProvider>
     );

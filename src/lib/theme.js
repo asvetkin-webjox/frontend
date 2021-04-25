@@ -43,11 +43,16 @@ const theme = createMuiTheme({
     htmlFontSize: 10,
     color: '#fff',
     h1: {
-      fontSize: '6.8rem',
-      lineHeight: '7.2rem',
-      fontWeight: 800,
+      fontSize: '4.8rem',
+      lineHeight: '3.4rem',
+      fontWeight: 'bold',
     },
     h2: {
+      fontSize: '3.2rem',
+      lineHeight: '4rem',
+      fontWeight: 'bold',
+    },
+    h3: {
       fontSize: '2rem',
       lineHeight: '2rem',
       fontWeight: 600,

@@ -15,9 +15,10 @@ const useStyles = makeStyles(({ palette: { primary } }) => ({
   },
 }));
 
-const SearchTables = ({ items = [], isPage, isLoading, ...rest }) => {
+const SearchTables = ({ items = [], isLoading, isIndex, ...rest }) => {
   const { container } = useStyles();
   const { matchesTablet } = useMedia();
+  const checkIfIndex = isIndex ? items.slice(0, 5) : items;
 
   const sizes = [51, 164, 122, 123, 122, 122, 123, 123];
   const sizesIpadHeader = [50, 163, 121, 60, 61, 60, 60, 122];
@@ -31,7 +32,7 @@ const SearchTables = ({ items = [], isPage, isLoading, ...rest }) => {
     <div className={container}>
       <TableHeader sizes={allSizesHeader} {...rest} />
       <LoadingContainer loading={isLoading} />
-      <TableEls sizes={allSizesTable} data={items} isPage={isPage} isLoading={isLoading} />
+      <TableEls sizes={allSizesTable} data={checkIfIndex} isLoading={isLoading} isIndex={isIndex} />
     </div>
   );
 };

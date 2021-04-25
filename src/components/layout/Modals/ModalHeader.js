@@ -12,7 +12,7 @@ export const ModalHeader = ({ name }) => {
   const { container } = useStyles();
 
   return (
-    <Typography variant="h2" color="initial" style={{ margin: '10px 0 32px 0' }}>
+    <Typography variant="h3" color="initial" style={{ margin: '10px 0 32px 0' }}>
       {name}
     </Typography>
   );
