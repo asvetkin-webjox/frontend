@@ -14,7 +14,11 @@ export const SearchInputs = ({ isIndex, ...rest }) => {
           База ниш
         </Typography>
       )}
-      {matchesMobile ? <SearchMobile {...rest} /> : <SearchDesktop {...rest} isIndex={isIndex} />}
+      {matchesMobile ? (
+        <SearchMobile {...rest} isIndex={isIndex} />
+      ) : (
+        <SearchDesktop {...rest} isIndex={isIndex} />
+      )}
     </Fragment>
   );
 };
