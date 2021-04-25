@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles({
   container: {
     position: 'absolute',
-    left: 5,
+    left: 18,
     top: '50%',
-    transform: 'translateY(-65%)',
+    transform: 'translateY(-50%)',
   },
 });
 
@@ -28,7 +28,7 @@ export const ErrorMessageIcon = () => {
       />
       <mask
         id="mask0"
-        maskType="alpha"
+        style={{ maskType: 'alpha' }}
         maskUnits="userSpaceOnUse"
         x="5"
         y="2"
@@ -46,7 +46,7 @@ export const ErrorMessageIcon = () => {
       <circle cx="5.99962" cy="8.76916" r="0.461538" fill="#D51E1E" />
       <mask
         id="mask1"
-        maskType="alpha"
+        style={{ maskType: 'alpha' }}
         maskUnits="userSpaceOnUse"
         x="5"
         y="8"
@@ -64,7 +64,7 @@ export const ErrorMessageIcon = () => {
       />
       <mask
         id="mask2"
-        maskType="alpha"
+        style={{ maskType: 'alpha' }}
         maskUnits="userSpaceOnUse"
         x="0"
         y="0"

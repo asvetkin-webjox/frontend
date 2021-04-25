@@ -4,7 +4,7 @@ import { Header } from 'components/layout/Header/Header';
 import { SearchInputs } from 'components/layout/SearchInputs/SearchInputs';
 import { ToggleContext } from 'components/state/context/toggle-context';
 import { useFetchData } from 'hooks/useFetchData';
-import { SideMenu } from 'components/layout/SideMenu/SideMenu';
+import SideMenu from 'components/layout/SideMenu/SideMenuContainer';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   wholeContainer: {

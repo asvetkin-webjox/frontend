@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles({
   container: {
     position: 'absolute',
-    left: 5,
+    left: 18,
     top: '50%',
-    transform: 'translateY(-65%)',
+    transform: 'translateY(-50%)',
   },
 });
 
@@ -15,7 +15,7 @@ export const AnomaliesBaseIcon = () => {
     <svg
       className={container}
       width="12"
-      height="11"
+      height="12"
       viewBox="0 0 12 11"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

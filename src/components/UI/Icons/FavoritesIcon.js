@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles({
   container: {
     position: 'absolute',
-    left: 5,
+    left: 18,
     top: '50%',
-    transform: 'translateY(-65%)',
+    transform: 'translateY(-50%)',
   },
 });
 
@@ -14,8 +14,8 @@ export const FavoritesIcon = () => {
   return (
     <svg
       className={container}
-      width="14"
-      height="14"
+      width="12"
+      height="12"
       viewBox="0 0 14 14"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ export const FavoritesIcon = () => {
       />
       <mask
         id="mask0"
-        maskType="alpha"
+        style={{ maskType: 'alpha' }}
         maskUnits="userSpaceOnUse"
         x="0"
         y="0"

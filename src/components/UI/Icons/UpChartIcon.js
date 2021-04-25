@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles({
   container: {
     position: 'absolute',
-    left: 5,
+    left: 18,
     top: '50%',
-    transform: 'translateY(-65%)',
+    transform: 'translateY(-50%)',
   },
 });
 
