@@ -11,12 +11,11 @@ export const useFetchData = (isIndex) => {
   const [isRegions, setRegions] = useState(null);
   const {
     searchCtxState: { isCtxSearch },
-    searchContext,
     searchDelContext,
   } = useContext(SearchContext);
 
   // const urls = 'http://45.80.71.95:8280/data?page=1&perPage=20';
-  const urls = 'http://45.80.71.95:8280/data?page=1&perPage=20&search=авто';
+  const urls = `${URL}/data?page=1&perPage=20&search=${isCtxSearch}`;
   const genUrl = isCtxSearch ? urls : isUrl;
 
   useEffect(async () => {

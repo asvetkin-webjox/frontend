@@ -19,7 +19,8 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     },
     [breakpoints.down('sm')]: {
       top: '44px',
-      left: '-176px',
+      left: ({ isIndex }) => (isIndex ? '50%' : '-176px'),
+      right: ({ isIndex }) => (isIndex ? 0 : ''),
     },
   },
 }));
@@ -30,8 +31,9 @@ export const DropRegion = ({
   regionHandler,
   matchesMobile,
   matchesTablet,
+  isIndex,
 }) => {
-  const { icon, dropDown } = useStyles({ toggledMenu });
+  const { icon, dropDown } = useStyles({ isIndex, toggledMenu });
   const { isSelected, selectHandler } = useRegionSelect(regions, regionHandler);
   const check = matchesMobile || matchesTablet;
 

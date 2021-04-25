@@ -9,27 +9,27 @@ const useStyles = makeStyles(({ palette: { secondary, blueLight } }) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     position: 'relative',
-    width: '214px',
+    width: ({ width }) => width,
     height: '40px',
     padding: '0 16px',
     cursor: 'pointer',
-    borderRadius: '4px',
+    borderRadius: ({ isIndex }) => (isIndex ? '0px' : '4px'),
     userSelect: 'none',
     color: secondary.main,
     border: `1px solid ${blueLight}`,
   },
 }));
 
-export const SelectRegion = ({ regionHandler, regions }) => {
+export const SelectRegion = ({ width = '214px', isIndex, ...rest }) => {
   const {
     toggleState: { toggledMenu },
     menuHandler,
   } = useContext(ToggleContext);
-  const { container } = useStyles(toggledMenu);
+  const { container } = useStyles({ width, isIndex });
 
   return (
     <div className={container} onClick={menuHandler} id="Регион">
-      <DropRegion regionHandler={regionHandler} regions={regions} toggledMenu={toggledMenu} />
+      <DropRegion toggledMenu={toggledMenu} isIndex={isIndex} {...rest} />
     </div>
   );
 };
