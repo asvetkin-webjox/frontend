@@ -14,10 +14,6 @@ const SideMenuContainer = () => {
   const { matchesHD } = useMedia();
 
   const sideMenu = matchesHD ? <SideMenuHD /> : <SideMenu />;
-
-  /* if (!isAuth) return null;
-
-  return matchesHD ? <SideMenuHD /> : <SideMenu />; */
   return (
     <Fragment>
       <NoSsr>{isAuth ? sideMenu : null}</NoSsr>

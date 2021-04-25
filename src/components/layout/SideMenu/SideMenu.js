@@ -1,22 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
+import { SideMenuContext } from 'components/state/context/sideMenu-context';
 import { CloseIcon } from 'components/UI/Icons/CloseIcon';
-import { MenuIcon } from 'components/UI/Icons/MenuIcon';
+
 import { ACCOUNT_MENU } from './menu.config';
 import { SideMenuFooter } from './SIdeMenuFooter';
 import { SideMenuList } from './SideMenuList';
 
-const useStyles = makeStyles(({ breakpoints, palette: { blueLight, primary, secondary } }) => ({
+const useStyles = makeStyles(({ breakpoints, palette: { primary, secondary } }) => ({
   root: {
     fontSize: '1.2rem',
-  },
-  iconStyle: {
-    color: blueLight,
-    fontSize: '2.4rem',
   },
   drawerPaper: {
     [breakpoints.down('sm')]: {
@@ -26,11 +23,6 @@ const useStyles = makeStyles(({ breakpoints, palette: { blueLight, primary, seco
       width: 234,
     },
     backgroundColor: primary.dim,
-  },
-  menuButton: {
-    position: 'fixed',
-    top: 10,
-    left: 10,
   },
 
   headerStyle: {
@@ -54,26 +46,23 @@ const useStyles = makeStyles(({ breakpoints, palette: { blueLight, primary, seco
 }));
 
 export const SideMenu = () => {
-  const [open, setOpen] = useState(false);
-  const { iconStyle, drawerPaper, menuButton, headerStyle, root, closeButtonStyle } = useStyles();
+  const { drawerPaper, headerStyle, root, closeButtonStyle } = useStyles();
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+  const {
+    sideMenuState: { isSideMenuOpen },
+    handleSideMenuClose,
+  } = useContext(SideMenuContext);
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    handleSideMenuClose();
   };
 
   const { title, content } = ACCOUNT_MENU;
 
   return (
     <React.Fragment>
-      <IconButton className={menuButton} onClick={handleDrawerOpen}>
-        <MenuIcon className={iconStyle} />
-      </IconButton>
       <Drawer
-        open={open}
+        open={isSideMenuOpen}
         onClose={handleDrawerClose}
         classes={{
           paper: drawerPaper,
