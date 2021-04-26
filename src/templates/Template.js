@@ -31,7 +31,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     },
   },
   container: {
-    /* width: '949px', */
+    width: '949px',
     height: '100%',
     margin: '0 auto',
     [breakpoints.down('md')]: {
@@ -68,10 +68,7 @@ export const Template = ({ children, tableHandler, isIndex = false }) => {
   return (
     <NoSsr>
       <div className={wholeContainer} onClick={resetHandler}>
-        <div
-          className={container}
-          style={matchesHD && isAuth && !isIndex ? { width: 1176 } : { width: 949 }}
-        >
+        <div className={container} style={matchesHD && isAuth && !isIndex ? { width: 1176 } : {}}>
           <div style={{ marginBottom: '12px' }}>
             <Header />
           </div>

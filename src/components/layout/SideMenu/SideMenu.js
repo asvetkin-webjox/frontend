@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
@@ -52,6 +52,10 @@ export const SideMenu = () => {
     sideMenuState: { isSideMenuOpen },
     handleSideMenuClose,
   } = useContext(SideMenuContext);
+
+  useEffect(() => {
+    handleSideMenuClose();
+  }, []);
 
   const handleDrawerClose = () => {
     handleSideMenuClose();

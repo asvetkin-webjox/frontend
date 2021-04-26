@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Fragment, useState } from 'react';
 import { SideMenuLink } from './SideMenuLink';
 
-const useStyles = makeStyles(({ breakpoints, palette: { primary, blueLight, secondary } }) => ({
+const useStyles = makeStyles(({ breakpoints, palette: { primary, blueLight } }) => ({
   listItem: {
     padding: 0,
     cursor: 'pointer',
@@ -35,22 +35,9 @@ const useStyles = makeStyles(({ breakpoints, palette: { primary, blueLight, seco
     [breakpoints.up('xl')]: {
       backgroundColor: primary.main,
     },
-    '&:hover': {
-      color: secondary.main,
-      textDecoration: 'none',
-      backgroundColor: primary.main,
-      [breakpoints.up('xl')]: {
-        backgroundImage: `linear-gradient(to right, 
-          transparent 0 10%, rgba(113,127,176, .3), transparent 90%)`,
-      },
-    },
     '& h3': {
       fontWeight: 400,
       fontSize: '1.2rem',
-    },
-    '&:hover h3': {
-      color: secondary.main,
-      fontWeight: 700,
     },
   },
 }));
