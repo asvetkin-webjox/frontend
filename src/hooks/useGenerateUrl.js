@@ -1,30 +1,40 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useMedia } from 'hooks/useMedia';
 import { URL } from 'backend/config';
+import { SearchContext } from 'state/context/search-context';
 
-export const useGenerateUrl = () => {
+export const useGenerateUrl = (isIndex) => {
   const [isPage, setPage] = useState(1);
   const defaultUrl = `${URL}/data?page=${isPage}&perPage=20`;
-  const defaultMobile = `${URL}/data?page=${isPage}&perPage=1`;
-
+  // const defaultMobile = `${URL}/data?page=${isPage}&perPage=20`;
   const [isRegion, setRegion] = useState(false);
-  const [isSearch, setSearch] = useState(false);
   const [isSort, setSort] = useState(false);
   const [isOrder, setOrder] = useState(false);
-  const { matchesMobile, matchesDesktop } = useMedia();
+  const { matchesMobile, matchesDesktop, matchesTablet } = useMedia();
   const [isUrl, setUrl] = useState(defaultUrl);
+  const { searchContext } = useContext(SearchContext);
+  const [isSearch, setSearch] = useState();
+
+  useEffect(() => {
+    if (isIndex) {
+      searchContext(isSearch);
+    }
+  }, [isSearch]);
 
   const searchHandler = (e) => {
     const { value } = e.target;
     const lowerCase = value.toLowerCase();
     const timeOutId = setTimeout(() => setSearch(lowerCase), 300);
+    // if (!isIndex && isCtxSearch) searchDelContext();
 
     return () => clearTimeout(timeOutId);
   };
 
   const generateUrl = () => {
-    const perPage = matchesMobile ? '1' : '20';
-    const url = `${URL}/data?page=${isPage}&perPage=${perPage}`;
+    // const perPage = matchesMobile ? '1' : '20';
+    const perPage = matchesMobile ? Math.ceil(isPage / 20) : isPage;
+    // const url = `${URL}/data?page=${isPage}&perPage=20`;
+    const url = `${URL}/data?page=${perPage}&perPage=20`;
     const withRegion = `&region=${isRegion}`;
     const withSearch = `&search=${isSearch}`;
     const withSort = `&sortkey=${isSort}`;
@@ -45,11 +55,12 @@ export const useGenerateUrl = () => {
 
   useEffect(() => {
     setSearch('');
+    setPage(1);
 
-    if (matchesMobile) return setUrl(defaultMobile);
+    // if (matchesMobile) return setUrl(defaultMobile);
 
-    return setUrl(defaultUrl);
-  }, [matchesDesktop, matchesMobile]);
+    // return setUrl(defaultUrl);
+  }, [matchesDesktop, matchesTablet, matchesMobile]);
 
   useEffect(() => {
     setPage(1);
@@ -66,7 +77,9 @@ export const useGenerateUrl = () => {
   const setSortHandler = (id) => setSort(id);
 
   const searchBtnHandler = () => {
-    setUrl(generateUrl);
+    if (isSearch === '') return setUrl(`${defaultUrl}&`);
+    // if (isCtxSearch) return setUrl(`${defaultUrl}&search=${isCtxSearch}`);
+    return setUrl(generateUrl);
   };
 
   return {

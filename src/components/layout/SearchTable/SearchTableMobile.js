@@ -53,13 +53,13 @@ const useStyles = makeStyles(({ palette: { primary, blueLight }, shadows }) => (
   },
 }));
 
-export const SearchTableMobile = ({ items = [], isLoading }) => {
-  const [data] = items;
-  const [oneItem] = data || [];
+export const SearchTableMobile = ({ items = [], isLoading, isPage }) => {
+  const calCur = (isPage - 1) % 20;
+  const item = items[calCur];
   const { container, header, inner, textBlock, text, icon, content } = useStyles();
-  const ifBlank = data && data.length === 0;
+  const ifBlank = items && items.length === 0;
 
-  const contentObj = tableElements({ ...oneItem });
+  const contentObj = tableElements({ ...item });
 
   const elemetNames = headerEls();
 

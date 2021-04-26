@@ -24,15 +24,29 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
 }));
 
-export const SearchDesktop = ({ regions, regionHandler, searchHandler, searchBtnHandler }) => {
+export const SearchDesktop = ({
+  regions,
+  regionHandler,
+  searchHandler,
+  searchBtnHandler,
+  tableHandler,
+  isIndex,
+  ...rest
+}) => {
   const { container, search, filter } = useStyles();
   const { matchesTablet } = useMedia();
+  const buttonSwitch = () => (isIndex ? tableHandler() : searchBtnHandler());
 
   return (
     <Fragment>
       <div className={container}>
         <div className={search}>
-          <Search searchHandler={searchHandler} searchBtnHandler={searchBtnHandler} />
+          <Search
+            searchHandler={searchHandler}
+            searchBtnHandler={searchBtnHandler}
+            isIndex={isIndex}
+            {...rest}
+          />
         </div>
         <div style={{ marginRight: '30px' }}>
           {!matchesTablet && <SelectRegion regions={regions} regionHandler={regionHandler} />}
@@ -40,7 +54,7 @@ export const SearchDesktop = ({ regions, regionHandler, searchHandler, searchBtn
         <div className={filter}>
           <Filter regionHandler={regionHandler} regions={regions} />
         </div>
-        <Button disableRipple onClick={searchBtnHandler}>
+        <Button disableRipple onClick={buttonSwitch}>
           Найти
         </Button>
       </div>

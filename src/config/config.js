@@ -2,14 +2,20 @@ export const ID_REGISTER = 'Register';
 export const ID_LOGIN = 'Login';
 export const ID_FORGOT = 'Forgot';
 export const ID_LOGOUT = 'Logout';
+export const URL = 'http://45.80.71.95:8281';
+
+export const body = (cred) =>
+  JSON.stringify({
+    ...cred,
+  });
 
 export const headers = {
-  loginHeader: (body) => ({
+  postHeader: (headerBody) => ({
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body,
+    body: headerBody,
   }),
   getHeader: () => ({
     method: 'GET',

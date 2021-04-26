@@ -1,19 +1,12 @@
 import React from 'react';
-import { Template } from 'templates/Template';
-import { SearchTable } from 'components/layout/SearchTable/SearchTable';
-import { Pagination } from 'components/UI/Pagination';
-import { useMedia } from 'hooks/useMedia';
-import { SearchTableMobile } from 'components/layout/SearchTable/SearchTableMobile';
+import { Table } from 'components/pages/Table';
+import { Index } from 'components/pages/Index';
+import { useToggle } from 'hooks/useToggle';
 
-const Index = () => {
-  const { matchesMobile } = useMedia();
+const index = () => {
+  const { isToggle: isTable, toggleHandler: tableHandler } = useToggle();
 
-  const search = (props) =>
-    matchesMobile
-      ? [<SearchTableMobile {...props} />, <Pagination {...props} />]
-      : [<SearchTable {...props} />, <Pagination {...props} />];
-
-  return <Template>{(props) => search(props)}</Template>;
+  return isTable ? <Table tableHandler={tableHandler} /> : <Index tableHandler={tableHandler} />;
 };
 
-export default Index;
+export default index;

@@ -15,7 +15,6 @@ export const useCheckFields = ({ isInputs }, isOpened, isAccept) => {
   } = modalMessages;
   const { password = '', mail = '', phone = '', repeat = '', name = '', surname = '' } = isInputs;
   const [isErrors, setErrors] = useState(false);
-  console.log('useCheckFields -> isErrors', isErrors);
 
   const [isPassed, setPassed] = useState(true);
   const conditions = [

@@ -55,7 +55,7 @@ export const ModalContainer = ({ children, handleClose, isOpened, id, isToggle }
       keepMounted={isFirst}
       disablePortal
       BackdropProps={{
-        timeout: 3000,
+        timeout: 300,
       }}
     >
       <Fade in={isOpened === id}>

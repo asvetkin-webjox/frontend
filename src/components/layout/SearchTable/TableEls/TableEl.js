@@ -29,7 +29,7 @@ const useStyles = makeStyles(({ palette: { primary }, breakpoints }) => ({
   },
 }));
 
-export const TableEl = ({ isPage, data, sizes, index, arrLength }) => {
+export const TableEl = ({ isPage, data, sizes, index, arrLength, isIndex }) => {
   const countBeforeLast = arrLength === index + 2;
   const countLast = arrLength === index + 1;
   const { container, element, opacity60, opacity20, left } = useStyles({
@@ -40,8 +40,8 @@ export const TableEl = ({ isPage, data, sizes, index, arrLength }) => {
   const content = tableElements({ ...data }, isPage, index);
 
   const checkIndex = () => {
-    if (countBeforeLast) return opacity60;
-    if (countLast) return opacity20;
+    if (countBeforeLast && !isIndex) return opacity60;
+    if (countLast && !isIndex) return opacity20;
 
     return '';
   };

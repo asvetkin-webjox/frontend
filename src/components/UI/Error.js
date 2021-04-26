@@ -6,6 +6,7 @@ const useStyles = makeStyles(({ palette: { accent } }) => ({
     position: 'absolute',
     left: '50%',
     bottom: ({ position }) => `${position}px`,
+    width: '100%',
     transform: 'translateX(-50%)',
     fontSize: '12px',
     fontStyle: 'italic',

@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { ModalContainer } from 'components/UI/Modal/ModalContainer';
 import { RegisterTemplate } from 'templates/RegisterTemplate';
 import { sharedStyles } from 'lib/sharedStyles';
@@ -7,25 +6,23 @@ import { ModalButtons } from 'components/layout/Modals/ModalButtons';
 import { CustomButton } from 'components/UI/Buttons/CustomButton';
 import { loginNames } from 'components/layout/Modals/loginNames';
 import { RegisterInput } from 'components/UI/Input/RegisterInput';
-
-const useStyles = makeStyles((theme) => ({
-  container: {},
-}));
+import { Error } from 'components/UI/Error';
 
 export const ForgotModal = ({ handleClose, isOpened, idRegister, modalHandler }) => {
-  const { container } = useStyles();
   const { button, blueButton, bigButton } = sharedStyles();
   const onlyEmail = loginNames.slice(0, 1);
 
   return (
     <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister}>
       <RegisterTemplate name="Восстановить пароль" isOpened={isOpened} handleClose={handleClose}>
-        {({ combinedFunc, handlePass, ...rest }) => (
+        {({ combinedFunc, isAuthError, handlePass, isReset, ...rest }) => (
           <Fragment>
-            <div className={container}>
+            <div style={{ position: 'relative' }}>
               {onlyEmail.map(({ icon, placeholder, name }) => (
                 <RegisterInput icon={icon} placeholder={placeholder} name={name} {...rest} />
               ))}
+              {isAuthError && <Error name={isAuthError} />}
+              {isReset && <Error name="Пароль отправлен на e-mail" />}
             </div>
             <div style={{ marginBottom: '20px' }}>
               <CustomButton

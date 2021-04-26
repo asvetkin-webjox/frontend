@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useMedia } from 'hooks/useMedia';
 
 export const usePagination = (num, pages, isRegion, isSearch) => {
   const [curPage, setCurPage] = useState(1);
+  const { matchesMobile, matchesDesktop, matchesTablet } = useMedia();
   const pagesArray = [...new Array(pages)].filter((_, i) => i % num === 0);
   const startPages = pagesArray.map((_, i) => i + 1).slice(0, 5);
 
@@ -20,7 +22,7 @@ export const usePagination = (num, pages, isRegion, isSearch) => {
 
   useEffect(() => {
     setCurPage(1);
-  }, [isRegion, isSearch]);
+  }, [isRegion, isSearch, matchesMobile, matchesDesktop, matchesTablet]);
 
   useEffect(() => {
     setPages(startPages);
