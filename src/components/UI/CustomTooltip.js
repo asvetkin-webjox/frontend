@@ -13,22 +13,22 @@ const useStyles = makeStyles(({ breakpoints, palette: { primary, secondary }, sh
     fontSize: '12px',
     padding: '4px 16px',
     [breakpoints.down('sm')]: {
-      maxWidth: '220px',
+      maxWidth: '190px',
     },
   },
 }));
 
 export const CustomTooltip = ({ title = '', mobile, ...rest }) => {
   const classes = useStyles();
-  const placementPosition = mobile ? 'right-end' : 'bottom';
+  const placementPosition = mobile ? 'right' : 'bottom';
 
   return (
     <Tooltip
       arrow={!mobile}
       classes={classes}
       title={title}
-      {...rest}
       placement={placementPosition}
+      {...rest}
     />
   );
 };
