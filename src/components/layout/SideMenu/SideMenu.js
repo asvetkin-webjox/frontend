@@ -30,10 +30,10 @@ const useStyles = makeStyles(({ breakpoints, palette: { primary, secondary } }) 
     height: 64,
     alignItems: 'center',
     color: secondary.main,
-    fontSize: '1.2rem',
+    fontSize: '2rem',
     fontWeight: 700,
     position: 'relative',
-    paddingLeft: 18,
+    paddingLeft: 24,
     borderBottom: `1px solid ${primary.main}`,
   },
   closeButtonStyle: {
