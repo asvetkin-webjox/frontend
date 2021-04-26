@@ -1,11 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   container: {
     margin: '0 auto 83px auto',
     maxWidth: '617px',
     textAlign: 'center',
+    [breakpoints.down('sm')]: {
+      maxWidth: '307px',
+    },
   },
 }));
 

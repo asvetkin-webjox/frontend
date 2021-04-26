@@ -28,15 +28,18 @@ export const Search = ({ searchHandler, searchBtnHandler, isIndex }) => {
     searchCtxState: { isCtxSearch },
   } = useContext(SearchContext);
   const { matchesMobile } = useMedia();
+  const checkIfIcon = isIndex && matchesMobile;
+
+  // dont show icon on index and mobile
 
   return (
     <div onFocus={clickHandler} onBlur={clickHandler} className={container}>
-      {!isIndex && <InputIcon url="icons/search.svg" />}
+      {!checkIfIcon && <InputIcon url="icons/search.svg" />}
       <Input
         defaultV={isCtxSearch || ''}
         placeholder={isClicked}
         width="100%"
-        isAdornment={!isIndex}
+        isAdornment={!checkIfIcon}
         styles={InputStyle}
         inputHandler={searchHandler}
         onKeyUp={keyHandler}
