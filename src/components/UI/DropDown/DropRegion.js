@@ -19,7 +19,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     },
     [breakpoints.down('sm')]: {
       top: '44px',
-      left: ({ isIndex }) => (isIndex ? '50%' : '-176px'),
+      left: ({ isIndex }) => (isIndex ? 'auto' : '-176px'),
       right: ({ isIndex }) => (isIndex ? 0 : ''),
     },
   },
