@@ -30,10 +30,10 @@ const useStyles = makeStyles(({ breakpoints, palette: { blueLight, secondary, pr
   },
 }));
 
-const SideMenuLink = ({ href, icon, text }) => {
+const SideMenuLink = ({ href, icon, text, ...props }) => {
   const { linkStyle } = useStyles();
   return (
-    <Link href={href} className={linkStyle}>
+    <Link href={href} className={linkStyle} {...props}>
       {icon}
       {text}
     </Link>

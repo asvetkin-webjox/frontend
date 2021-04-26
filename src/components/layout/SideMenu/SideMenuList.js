@@ -24,7 +24,12 @@ const SideMenuList = ({ list }) => {
       }
       return (
         <ListItem key={item.id} className={listItemStyle}>
-          <SideMenuLink href={item.href} icon={item.icon} text={item.title} />
+          <SideMenuLink
+            href={item.href}
+            icon={item.icon}
+            text={item.title}
+            style={{ opacity: 1 }}
+          />
         </ListItem>
       );
     });

@@ -24,7 +24,6 @@ const useStyles = makeStyles(({ breakpoints, palette: { primary, blueLight, seco
     transform: 'translateY(-50%)',
   },
   headerStyle: {
-    opacity: 0.6,
     color: blueLight,
     position: 'relative',
     display: 'flex',
@@ -37,7 +36,6 @@ const useStyles = makeStyles(({ breakpoints, palette: { primary, blueLight, seco
       backgroundColor: primary.main,
     },
     '&:hover': {
-      opacity: 1,
       color: secondary.main,
       textDecoration: 'none',
       backgroundColor: primary.main,
