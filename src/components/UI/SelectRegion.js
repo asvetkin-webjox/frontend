@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ToggleContext } from 'state/context/toggle-context';
 import { DropRegion } from 'components/UI/DropDown/DropRegion';
 import { AuthContext } from 'state/context/auth-context';
-import { useOpenModal } from 'hooks/useOpenModal';
 import { ModalsContainer } from 'components/layout/Modals/ModalsContainer';
 
 const useStyles = makeStyles(({ palette: { secondary, blueLight } }) => ({
