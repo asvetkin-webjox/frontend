@@ -32,7 +32,7 @@ export const SelectRegion = ({ width = '214px', isIndex, modalHandler, ...props 
   const { container } = useStyles({ width, isIndex });
   const conditionalHandler = (e) => {
     if (!isIndex) return menuHandler(e);
-    if (!isAuth) return modalHandler(e, 'Login');
+    if (!isAuth) return modalHandler(e, 'Register');
   };
 
   return (

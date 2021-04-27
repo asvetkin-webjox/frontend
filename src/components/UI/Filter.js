@@ -35,14 +35,15 @@ const useStyles = makeStyles(({ palette: { primary, blueLight, secondary }, brea
 }));
 
 export const Filter = ({ regionHandler, regions }) => {
+  console.log('Filter -> regionHandler', regionHandler);
   const { container } = useStyles();
   const {
     toggleState: { toggledMenu },
     menuHandler,
   } = useContext(ToggleContext);
-  const { matchesMobile, matchesTablet, matchBoth } = useMedia();
+  const { matchesMobile, matchesTablet } = useMedia();
   const checkIf = (e) => {
-    if (!matchBoth) return;
+    if (!matchesMobile) return;
 
     menuHandler(e);
   };
@@ -50,7 +51,7 @@ export const Filter = ({ regionHandler, regions }) => {
   return (
     <div className={container} onClick={checkIf} id="Фильтр">
       <FilterIcon menuHandler={menuHandler} />
-      {matchBoth && (
+      {matchesMobile && (
         <DropRegion
           regionHandler={regionHandler}
           regions={regions}
