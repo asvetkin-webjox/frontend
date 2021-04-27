@@ -49,7 +49,14 @@ export const SearchDesktop = ({
           />
         </div>
         <div style={{ marginRight: '30px' }}>
-          {!matchesTablet && <SelectRegion regions={regions} regionHandler={regionHandler} />}
+          {!matchesTablet && (
+            <SelectRegion
+              regions={regions}
+              regionHandler={regionHandler}
+              isIndex={isIndex}
+              {...rest}
+            />
+          )}
         </div>
         <div className={filter}>
           <Filter regionHandler={regionHandler} regions={regions} />

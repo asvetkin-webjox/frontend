@@ -22,7 +22,9 @@ export const ForgotModal = ({ handleClose, isOpened, idRegister, modalHandler })
                 <RegisterInput icon={icon} placeholder={placeholder} name={name} {...rest} />
               ))}
               {isAuthError && <Error name={isAuthError} />}
-              {isReset && <Error name="Пароль отправлен на e-mail" />}
+              {isReset && (
+                <Error name="Пароль отправлен на e-mail (проверьте папку спам)" color="#1EC78E" />
+              )}
             </div>
             <div style={{ marginBottom: '20px' }}>
               <CustomButton

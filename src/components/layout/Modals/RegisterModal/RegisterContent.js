@@ -7,7 +7,15 @@ import { DoubleInput } from 'components/UI/Input/DoubleInput';
 import { dropDownStyle } from 'lib/dropDownStyle';
 import { useMedia } from 'hooks/useMedia';
 
-export const RegisterContent = ({ isToggle, toggleOn, openHandler, isOpen, open, ...rest }) => {
+export const RegisterContent = ({
+  isToggle,
+  toggleOn,
+  openHandler,
+  isOpen,
+  open,
+  isInputs,
+  ...rest
+}) => {
   const { ...styles } = dropDownStyle();
   const { matchesMobile } = useMedia();
 
@@ -30,7 +38,15 @@ export const RegisterContent = ({ isToggle, toggleOn, openHandler, isOpen, open,
             </div>
           );
         if (i === 1)
-          return <DoubleInput icon={icon} placeholders={placeholders} names={names} {...rest} />;
+          return (
+            <DoubleInput
+              icon={icon}
+              placeholders={placeholders}
+              names={names}
+              isInputs={isInputs}
+              {...rest}
+            />
+          );
 
         return (
           <RegisterInput

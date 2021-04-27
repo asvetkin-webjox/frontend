@@ -7,6 +7,8 @@ import { useFetchData } from 'hooks/useFetchData';
 import { IndexHeader } from 'components/layout/Index/IndexHeader';
 import { NoSsr } from '@material-ui/core';
 import { IndexAnnotation } from 'components/layout/Index/IndexAnnotation';
+import { useOpenModal } from 'hooks/useOpenModal';
+import { ModalsContainer } from 'components/layout/Modals/ModalsContainer';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   wholeContainer: {
@@ -18,12 +20,12 @@ const useStyles = makeStyles(({ breakpoints }) => ({
       content: '""',
       position: 'absolute',
       margin: '0 auto',
-      opacity: ({ dimmed }) => (dimmed ? '0.4' : '1'),
-      width: ({ dimmed }) => (dimmed ? '100vw' : '0%'),
       height: '100vh',
       left: '0',
       top: '0',
       backgroundColor: '#000',
+      opacity: ({ dimmed }) => (dimmed ? '0.5' : '1'),
+      width: ({ dimmed }) => (dimmed ? '100vw' : '0%'),
     },
   },
   container: {
@@ -54,7 +56,8 @@ export const Template = ({ children, tableHandler, isIndex = false }) => {
 
   const { data = [], regions } = isData;
   const [items, pages] = data;
-  const dataObject = { items, pages, isIndex, tableHandler, ...combinedObject };
+  const { ...modalHook } = useOpenModal();
+  const dataObject = { items, pages, isIndex, tableHandler, ...modalHook, ...combinedObject };
   // const isAuth;
   const conditionCheck = (...conditions) => {
     return conditions.map((c) => {
@@ -79,7 +82,7 @@ export const Template = ({ children, tableHandler, isIndex = false }) => {
       <div className={wholeContainer} onClick={resetHandler}>
         <div className={container}>
           <div style={{ marginBottom: '12px' }}>
-            <Header />
+            <Header modalHook={modalHook} />
           </div>
           {isIndex && <IndexHeader />}
           <div style={{ marginBottom: '40px' }}>
@@ -89,6 +92,7 @@ export const Template = ({ children, tableHandler, isIndex = false }) => {
           {children(dataObject)}
         </div>
       </div>
+      <ModalsContainer {...modalHook} />
     </NoSsr>
   );
 };

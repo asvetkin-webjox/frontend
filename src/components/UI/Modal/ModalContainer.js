@@ -52,15 +52,16 @@ export const ModalContainer = ({ children, handleClose, isOpened, id, isToggle }
       onClose={mergeFunc}
       closeAfterTransition
       BackdropComponent={Backdrop}
-      keepMounted={isFirst}
+      // keepMounted={isFirst}
       disablePortal
       BackdropProps={{
-        timeout: 100,
+        timeout: 200,
+        style: { backgroundColor: '#000', opacity: '0.37' },
       }}
     >
-      <Fade in={isOpened === id}>
-        <div className={paper}>{children}</div>
-      </Fade>
+      {/* <Fade in={isOpened === id}> */}
+      <div className={paper}>{children}</div>
+      {/* </Fade> */}
     </Modal>
   );
 };
