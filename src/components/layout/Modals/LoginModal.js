@@ -14,7 +14,7 @@ export const LoginModal = ({ handleClose, isOpened, idRegister, modalHandler }) 
   return (
     <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister}>
       <RegisterTemplate name="Войти в аккаунт" isOpened={isOpened} handleClose={handleClose}>
-        {({ combinedFunc, isAuthError, ...rest }) => (
+        {({ combinedFunc, isAuthError, isTypeErrors, ...rest }) => (
           <Fragment>
             <div style={{ position: 'relative' }}>
               {loginNames.map((el) => {
@@ -24,7 +24,7 @@ export const LoginModal = ({ handleClose, isOpened, idRegister, modalHandler }) 
                   <RegisterInput icon={icon} placeholder={placeholder} name={name} {...rest} />
                 );
               })}
-              {isAuthError && <Error name="Логин/пароль неверные" />}
+              {isAuthError && !isTypeErrors && <Error name={isAuthError} />}
             </div>
             <div style={{ marginBottom: '20px' }}>
               <CustomButton

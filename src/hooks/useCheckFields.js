@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { modalMessages } from 'lib/messages';
 import { ifAllFalse, checkEmail } from 'utils/checkFields';
+import { ID_LOGIN, ID_FORGOT, ID_REGISTER } from 'config/config';
 
 export const useCheckFields = ({ isInputs }, isOpened, isAccept) => {
   const {
@@ -12,7 +13,9 @@ export const useCheckFields = ({ isInputs }, isOpened, isAccept) => {
     notAccepted,
   } = modalMessages;
   const { mail = '', password = '', phone = '', repeat = '', name = '', surname = '' } = isInputs;
-  const allInputs = { mail, password, phone, repeat, name, surname, terms: isAccept };
+  const registerInputs = { mail, password, phone, repeat, name, surname, terms: isAccept };
+  const loginInputs = { mail, password };
+  const forgotInputs = { mail };
   const [isErrors, setErrors] = useState(false);
 
   const [isPassed, setPassed] = useState(true);
@@ -32,7 +35,7 @@ export const useCheckFields = ({ isInputs }, isOpened, isAccept) => {
     surname: !surname,
   };
 
-  const checkConditions = (conds) => {
+  const checkConditions = (conds, strict = true) => {
     const arrFromObj = Object.keys(conds);
 
     arrFromObj.map((condition) => {
@@ -41,7 +44,7 @@ export const useCheckFields = ({ isInputs }, isOpened, isAccept) => {
           ...state,
           [condition]: 'Поле не заполнено',
         }));
-      } else if (conditions[condition]) {
+      } else if (conditions[condition] && strict) {
         setErrors((state) => ({
           ...state,
           [condition]: conditions[condition],
@@ -52,16 +55,15 @@ export const useCheckFields = ({ isInputs }, isOpened, isAccept) => {
 
   useEffect(() => {
     setPassed(true);
-    setErrors(false);
+    setErrors(true);
   }, [isOpened]);
 
   useEffect(() => {
     setErrors(false);
-    // if (isOpened === 'Login') return setErrors(false);
-    // if (isOpened === 'Forgot') return setErrors(false);
-
-    return checkConditions(allInputs);
-  }, [isInputs, isAccept]);
+    if (isOpened === ID_LOGIN) return checkConditions(loginInputs, false);
+    if (isOpened === ID_FORGOT) return checkConditions(forgotInputs, false);
+    if (isOpened === ID_REGISTER) checkConditions(registerInputs);
+  }, [isInputs, isAccept, isOpened]);
 
   const handlePass = () => {
     const checked = ifAllFalse(isErrors);
