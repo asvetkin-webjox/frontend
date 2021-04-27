@@ -35,11 +35,11 @@ export const DropRegion = ({
 }) => {
   const { icon, dropDown } = useStyles({ isIndex, toggledMenu });
   const { isSelected, selectHandler } = useRegionSelect(regions, regionHandler);
-  const check = matchesMobile || matchesTablet;
+  const isMobile = matchesMobile || matchesTablet;
 
   return (
     <Fragment>
-      {!check && (
+      {!isMobile && (
         <Fragment>
           <div id="Регион">{isSelected}</div>
           <div className={icon}>

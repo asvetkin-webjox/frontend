@@ -6,9 +6,7 @@ import { useMedia } from 'hooks/useMedia';
 export const Index = ({ tableHandler }) => {
   const { matchesMobile } = useMedia();
 
-  const search = (props) => {
-    return matchesMobile ? '' : <SearchTable {...props} />;
-  };
+  const search = (props) => (matchesMobile ? '' : <SearchTable {...props} />);
 
   return (
     <Template tableHandler={tableHandler} isIndex>
