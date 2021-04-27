@@ -39,3 +39,35 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 1000px #17192D inset;
   -webkit-text-fill-color: #fff;
 }
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #17192D inset;
+  -webkit-text-fill-color: #fff;
+}
+input:-moz-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #17192D inset;
+  -webkit-text-fill-color: #fff;
+}
+input:-o-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #17192D inset;
+  -webkit-text-fill-color: #fff;
+}
+input:-khtml-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #17192D inset;
+  -webkit-text-fill-color: #fff;
+}
+input:focus:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #17192D inset;
+  -webkit-text-fill-color: #fff;
+}
+input:focus:-moz-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #17192D inset;
+  -webkit-text-fill-color: #fff;
+}
+input:focus:-o-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #17192D inset;
+  -webkit-text-fill-color: #fff;
+}
+input:focus:-khtml-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #17192D inset;
+  -webkit-text-fill-color: #fff;
+}

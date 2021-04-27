@@ -8,7 +8,7 @@ const useStyles = makeStyles(({ palette: { accent } }) => ({
     bottom: ({ position }) => `${position}px`,
     width: '100%',
     transform: 'translateX(-50%)',
-    fontSize: '12px',
+    fontSize: '10px',
     fontStyle: 'italic',
     color: accent,
   },
