@@ -29,6 +29,9 @@ export const RegisterInput = ({
   const { isToggle, toggleHandler } = useToggle();
   const ifPassword = name === 'repeat' || name === 'password';
   const arrNames = ['password', 'mail', 'phone', 'repeat'];
+  // const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  const { userAgent } = window.navigator;
+  const isSafari = userAgent.match(/iPad/i) || userAgent.match(/iPhone/i);
 
   const { container } = useStyles({ blockName });
   const showPassword = () => {
@@ -41,15 +44,31 @@ export const RegisterInput = ({
   return (
     <div className={container}>
       <InputIcon url={`icons/${icon}`} />
-      <Input
-        placeholder={placeholder}
-        width="100%"
-        required
-        isAdornment
-        inputHandler={inputHandler(name)}
-        textMask={name === 'phone' ? phoneMask : undefined}
-        type={showPassword()}
-      />
+      {isSafari && (
+        <form noValidate>
+          <Input
+            placeholder={placeholder}
+            width="100%"
+            required
+            isAdornment
+            inputHandler={inputHandler(name)}
+            textMask={name === 'phone' ? phoneMask : undefined}
+            type={showPassword()}
+          />
+        </form>
+      )}
+      {!isSafari && (
+        <Input
+          placeholder={placeholder}
+          width="100%"
+          required
+          isAdornment
+          inputHandler={inputHandler(name)}
+          textMask={name === 'phone' ? phoneMask : undefined}
+          type={showPassword()}
+        />
+      )}
+
       {ifPassword && <ShowPassword toggleHandler={toggleHandler} />}
 
       {arrNames.map(

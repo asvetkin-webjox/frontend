@@ -14,6 +14,10 @@ export const InputStyle = (
       transform: 'translateY(1px)',
       fontSize: '1.2rem',
     },
+    '&:-webkit-autofill': {
+      WebkitBoxShadow: '0 0 0 1000px #17192D inset',
+      WebkitTextFillColor: '#fff',
+    },
   },
   notchedOutline: {
     border: 'none',

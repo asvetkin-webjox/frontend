@@ -19,6 +19,7 @@ const useStyles = makeStyles(({ breakpoints, palette: { primary }, shadow }) => 
     outline: 'none',
     borderRadius: '4px',
     overflowY: 'scroll',
+    overflowX: 'hidden',
     '&:after': {
       content: '""',
       position: 'absolute',
