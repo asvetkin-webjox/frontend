@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Logo } from 'components/UI/Logo';
-import { useOpenModal } from 'hooks/useOpenModal';
-import { ModalsContainer } from 'components/layout/Modals/ModalsContainer';
 import { GuestHeader } from 'components/layout/Header/GuestHeader';
 import { AuthContext } from 'state/context/auth-context';
 import { NoSsr } from '@material-ui/core';
@@ -17,9 +15,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const Header = () => {
+export const Header = ({ modalHook }) => {
   const { container } = useStyles();
-  const { ...rest } = useOpenModal();
   const {
     authState: { isAuth },
   } = useContext(AuthContext);
@@ -28,8 +25,7 @@ export const Header = () => {
     <div className={container}>
       <NoSsr>
         <Logo />
-        {isAuth ? <UserHeader /> : <GuestHeader {...rest} />}
-        <ModalsContainer {...rest} />
+        {isAuth ? <UserHeader /> : <GuestHeader {...modalHook} />}
       </NoSsr>
     </div>
   );

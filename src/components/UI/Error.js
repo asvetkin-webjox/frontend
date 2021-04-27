@@ -10,12 +10,12 @@ const useStyles = makeStyles(({ palette: { accent } }) => ({
     transform: 'translateX(-50%)',
     fontSize: '10px',
     fontStyle: 'italic',
-    color: accent,
+    color: ({ color }) => color || accent,
   },
 }));
 
-export const Error = ({ name, position = '-17' }) => {
-  const { container } = useStyles({ position });
+export const Error = ({ name, position = '-17', color }) => {
+  const { container } = useStyles({ position, color });
 
   return <div className={container}>{name}</div>;
 };
