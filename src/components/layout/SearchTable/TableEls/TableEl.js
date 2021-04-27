@@ -8,6 +8,7 @@ const useStyles = makeStyles(({ palette: { primary }, breakpoints }) => ({
     textAlign: 'center',
     borderBottom: `1px solid ${primary.main}`,
     backgroundColor: primary.dim,
+    borderRadius: ({ countLast }) => (countLast ? '0 0 4px 4px' : '0'),
   },
   element: {
     display: 'flex',
@@ -21,7 +22,6 @@ const useStyles = makeStyles(({ palette: { primary }, breakpoints }) => ({
   },
   opacity20: {
     opacity: '0.2',
-    borderRadius: (countLast) => (countLast ? '0 0 4px 4px' : '0'),
   },
   left: {
     justifyContent: 'left',

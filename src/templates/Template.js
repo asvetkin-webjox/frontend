@@ -55,6 +55,24 @@ export const Template = ({ children, tableHandler, isIndex = false }) => {
   const { data = [], regions } = isData;
   const [items, pages] = data;
   const dataObject = { items, pages, isIndex, tableHandler, ...combinedObject };
+  // const isAuth;
+  const conditionCheck = (...conditions) => {
+    return conditions.map((c) => {
+      if (!c) return null;
+
+      return true;
+    });
+  };
+
+  // const cond = [];
+  // const isShow = conditionCheck(!isAuth, isIndex, matchesHD)
+  // const isMenu = (() => {
+  //   if (!isAuth) return null;
+  //   if (isIndex) return null;
+  //   if (!matchesHD) return null;
+
+  //   return true;
+  // })();
 
   return (
     <NoSsr>

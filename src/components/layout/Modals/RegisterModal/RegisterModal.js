@@ -26,7 +26,7 @@ export const RegisterModal = ({ handleClose, isOpened, idRegister, modalHandler 
 
   return (
     <ModalContainer handleClose={handleClose} isOpened={isOpened} id={idRegister} isToggle={isOpen}>
-      <RegisterTemplate name="Зарегистрироваться" handleClose={handleClose}>
+      <RegisterTemplate name="Зарегистрироваться" handleClose={handleClose} isOpened={isOpened}>
         {({ combinedFunc, isAuthError, ...rest }) => (
           <Fragment>
             {/* {!isRegistered && ( */}

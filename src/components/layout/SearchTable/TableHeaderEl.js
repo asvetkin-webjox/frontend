@@ -17,7 +17,7 @@ const useStyles = makeStyles(({ palette: { primary, blueLight } }) => ({
   },
   text: {
     marginRight: '2px',
-    fontSize: '0.8rem',
+    fontSize: '8px',
     lineHeight: '1',
     transform: 'translate(0, 0px)',
     color: blueLight,

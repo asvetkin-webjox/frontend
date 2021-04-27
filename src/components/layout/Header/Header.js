@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
 
 export const Header = () => {
   const { container } = useStyles();
-  const { modalHandler, ...rest } = useOpenModal();
+  const { ...rest } = useOpenModal();
   const {
     authState: { isAuth },
   } = useContext(AuthContext);
@@ -28,9 +28,8 @@ export const Header = () => {
     <div className={container}>
       <NoSsr>
         <Logo />
-        {!isAuth && <GuestHeader modalHandler={modalHandler} />}
-        {isAuth && <UserHeader />}
-        <ModalsContainer modalHandler={modalHandler} {...rest} />
+        {isAuth ? <UserHeader /> : <GuestHeader {...rest} />}
+        <ModalsContainer {...rest} />
       </NoSsr>
     </div>
   );

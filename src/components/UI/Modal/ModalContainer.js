@@ -28,7 +28,7 @@ const useStyles = makeStyles(({ breakpoints, palette: { primary }, shadow }) => 
       margin: '0 auto',
       zIndex: '0',
       backgroundColor: '#000',
-      opacity: ({ isToggle }) => (isToggle ? '0.25' : '1'),
+      opacity: ({ isToggle }) => (isToggle ? '0.5' : '1'),
       width: ({ isToggle }) => (isToggle ? '100%' : '0%'),
     },
     [breakpoints.down('sm')]: {
@@ -55,7 +55,7 @@ export const ModalContainer = ({ children, handleClose, isOpened, id, isToggle }
       keepMounted={isFirst}
       disablePortal
       BackdropProps={{
-        timeout: 300,
+        timeout: 100,
       }}
     >
       <Fade in={isOpened === id}>
