@@ -35,7 +35,6 @@ const useStyles = makeStyles(({ palette: { primary, blueLight, secondary }, brea
 }));
 
 export const Filter = ({ regionHandler, regions }) => {
-  console.log('Filter -> regionHandler', regionHandler);
   const { container } = useStyles();
   const {
     toggleState: { toggledMenu },

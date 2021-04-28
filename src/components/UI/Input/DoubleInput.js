@@ -6,6 +6,7 @@ import { inputRightStyle } from 'components/UI/Input/inputRightStyle';
 import { InputIcon } from 'components/UI/Input/InputIcon';
 import { ErrorMessage } from 'components/UI/Input/ErrorMessage';
 import { useMedia } from 'hooks/useMedia';
+import { useInputHandler } from 'hooks/useInputHandler';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   container: {
@@ -23,30 +24,23 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
 }));
 
-export const DoubleInput = ({
-  placeholders,
-  names,
-  icon,
-  isErrors,
-  isPassed,
-  isInputs,
-  inputHandler,
-}) => {
+export const DoubleInput = ({ placeholders, names, icon, isErrors, isPassed, inputHandler }) => {
   const { container, input } = useStyles();
   const [fisrtName, secondName] = names;
   const [firstPh, secondPh] = placeholders;
   const { matchesMobile } = useMedia();
   const calcWidth = matchesMobile ? '100%' : '161px';
-  const [value, setValue] = useState('');
-  console.log('value', value);
-
-  const valueHandler = (e) => setValue(e.target.value);
+  // const [fio, setFio] = useState('');
   const regex = /[^a-zA-Zа-яА-Я]/g;
-  const check = isInputs.name && !!isInputs.name.match(regex);
+  const { isInputs: fio, inputHandler: fioHandler } = useInputHandler(true, regex);
+  const { name = '', surname = '' } = fio;
 
-  useEffect(() => {
-    setValue(value.replace(regex, ''));
-  }, [value]);
+  // const fioHandler = (e) => setFio(e.target.value);
+  // const check = isInputs.name && !!isInputs.name.match(regex);
+
+  // useEffect(() => {
+  //   setFio({ name: name.replace(regex, ''), surname: surname.replace(regex, '') });
+  // }, [name, surname]);
 
   return (
     <div className={container}>
@@ -54,10 +48,10 @@ export const DoubleInput = ({
       <div className={input}>
         <Input
           placeholder={firstPh}
-          value={value}
+          value={name}
           width={calcWidth}
           isAdornment
-          inputHandler={valueHandler}
+          inputHandler={fioHandler('name')}
           onBlur={inputHandler(fisrtName)}
           styles={inputLeftStyle}
         />
@@ -66,9 +60,10 @@ export const DoubleInput = ({
       <div className={input}>
         <Input
           placeholder={secondPh}
-          defaultValue={isInputs.surname}
+          value={surname}
           width={calcWidth}
           isAdornment={false}
+          inputHandler={fioHandler('surname')}
           onBlur={inputHandler(secondName)}
           styles={inputRightStyle}
         />

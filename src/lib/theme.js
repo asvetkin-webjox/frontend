@@ -8,7 +8,7 @@ const theme = createMuiTheme({
       sm: 500,
       md: 768,
       lg: 1024,
-      xl: 1920,
+      xl: 1441,
     },
   },
   spacing: 8,
