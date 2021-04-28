@@ -19,6 +19,7 @@ const useStyles = makeStyles(({ breakpoints, palette: { primary }, shadow }) => 
     outline: 'none',
     borderRadius: '4px',
     overflowY: 'scroll',
+    overflowX: 'hidden',
     '&:after': {
       content: '""',
       position: 'absolute',
@@ -28,7 +29,7 @@ const useStyles = makeStyles(({ breakpoints, palette: { primary }, shadow }) => 
       margin: '0 auto',
       zIndex: '0',
       backgroundColor: '#000',
-      opacity: ({ isToggle }) => (isToggle ? '0.25' : '1'),
+      opacity: ({ isToggle }) => (isToggle ? '0.5' : '1'),
       width: ({ isToggle }) => (isToggle ? '100%' : '0%'),
     },
     [breakpoints.down('sm')]: {
@@ -52,15 +53,16 @@ export const ModalContainer = ({ children, handleClose, isOpened, id, isToggle }
       onClose={mergeFunc}
       closeAfterTransition
       BackdropComponent={Backdrop}
-      keepMounted={isFirst}
+      // keepMounted={isFirst}
       disablePortal
       BackdropProps={{
-        timeout: 300,
+        timeout: 200,
+        style: { backgroundColor: '#000', opacity: '0.37' },
       }}
     >
-      <Fade in={isOpened === id}>
-        <div className={paper}>{children}</div>
-      </Fade>
+      {/* <Fade in={isOpened === id}> */}
+      <div className={paper}>{children}</div>
+      {/* </Fade> */}
     </Modal>
   );
 };

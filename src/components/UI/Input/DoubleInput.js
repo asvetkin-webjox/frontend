@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Input } from 'components/UI/Input/Input';
 import { inputLeftStyle } from 'components/UI/Input/inputLeftStyle';
@@ -23,12 +23,30 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
 }));
 
-export const DoubleInput = ({ placeholders, names, icon, isErrors, isPassed, inputHandler }) => {
+export const DoubleInput = ({
+  placeholders,
+  names,
+  icon,
+  isErrors,
+  isPassed,
+  isInputs,
+  inputHandler,
+}) => {
   const { container, input } = useStyles();
   const [fisrtName, secondName] = names;
   const [firstPh, secondPh] = placeholders;
   const { matchesMobile } = useMedia();
   const calcWidth = matchesMobile ? '100%' : '161px';
+  const [value, setValue] = useState('');
+  console.log('value', value);
+
+  const valueHandler = (e) => setValue(e.target.value);
+  const regex = /[^a-zA-Zа-яА-Я]/g;
+  const check = isInputs.name && !!isInputs.name.match(regex);
+
+  useEffect(() => {
+    setValue(value.replace(regex, ''));
+  }, [value]);
 
   return (
     <div className={container}>
@@ -36,9 +54,11 @@ export const DoubleInput = ({ placeholders, names, icon, isErrors, isPassed, inp
       <div className={input}>
         <Input
           placeholder={firstPh}
+          value={value}
           width={calcWidth}
           isAdornment
-          inputHandler={inputHandler(fisrtName)}
+          inputHandler={valueHandler}
+          onBlur={inputHandler(fisrtName)}
           styles={inputLeftStyle}
         />
         {!isPassed && fisrtName && <ErrorMessage name={fisrtName} message={isErrors} />}
@@ -46,9 +66,10 @@ export const DoubleInput = ({ placeholders, names, icon, isErrors, isPassed, inp
       <div className={input}>
         <Input
           placeholder={secondPh}
+          defaultValue={isInputs.surname}
           width={calcWidth}
           isAdornment={false}
-          inputHandler={inputHandler(secondName)}
+          onBlur={inputHandler(secondName)}
           styles={inputRightStyle}
         />
         {!isPassed && secondName && <ErrorMessage name={secondName} message={isErrors} />}

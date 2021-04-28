@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ToggleContext } from 'state/context/toggle-context';
 import { DropRegion } from 'components/UI/DropDown/DropRegion';
+import { AuthContext } from 'state/context/auth-context';
+import { ModalsContainer } from 'components/layout/Modals/ModalsContainer';
 
 const useStyles = makeStyles(({ palette: { secondary, blueLight } }) => ({
   container: {
@@ -20,16 +22,23 @@ const useStyles = makeStyles(({ palette: { secondary, blueLight } }) => ({
   },
 }));
 
-export const SelectRegion = ({ width = '214px', isIndex, ...rest }) => {
+export const SelectRegion = ({ width = '214px', isIndex, modalHandler, ...props }) => {
   const {
     toggleState: { toggledMenu },
     menuHandler,
   } = useContext(ToggleContext);
+  const { autState: isAuth } = useContext(AuthContext);
+
   const { container } = useStyles({ width, isIndex });
+  const conditionalHandler = (e) => {
+    if (!isIndex) return menuHandler(e);
+    if (!isAuth) return modalHandler(e, 'Register');
+  };
 
   return (
-    <div className={container} onClick={menuHandler} id="Регион">
-      <DropRegion toggledMenu={toggledMenu} isIndex={isIndex} {...rest} />
+    <div className={container} onClick={conditionalHandler} id="Регион">
+      <DropRegion toggledMenu={toggledMenu} isIndex={isIndex} {...props} />
+      <ModalsContainer {...props} />
     </div>
   );
 };

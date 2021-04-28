@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from 'state/context/auth-context';
 import { SUCCESS } from 'state/constants';
 import { cookiesSet } from 'state/cookies';
@@ -19,9 +19,15 @@ export const useAuth = (
   const registerUrl = `${URL}/signup`;
   const resetUrl = `${URL}/forget?username=${username}`;
 
-  const loginBody = body({ username, password });
-  const registerBody = body({ username, password, passwordRetyped });
+  const lowerCaseMail = username && username.toLowerCase();
+
+  const loginBody = body({ username: lowerCaseMail, password });
+  const registerBody = body({ username: lowerCaseMail, password, passwordRetyped });
   const { postHeader, getHeader } = headers;
+
+  useEffect(() => {
+    setError(false);
+  }, [username, password]);
 
   const authHandler = async (data = {}, status = '') => {
     const { url, header } = data;

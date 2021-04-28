@@ -26,8 +26,8 @@ export const RegisterTemplate = ({ children, name, isOpened, handleClose }) => {
   const { ...inputs } = useInputHandler();
   const { isInputs } = inputs;
   const { isToggle: isAccept, toggleHandler: toggleAccept } = useToggle();
-  const { handlePass, ...errors } = useCheckFields(inputs, isOpened, isAccept);
-  const { isErrors } = errors;
+  const { handlePass, isPassed, ...errors } = useCheckFields(inputs, isOpened, isAccept);
+  const { isErrors: isTypeErrors } = errors;
   const { ...toggle } = useToggle(false);
   const { loginHandler, registerHandler, resetHandler, isLoading, ...auth } = useAuth(
     isInputs,
@@ -39,7 +39,7 @@ export const RegisterTemplate = ({ children, name, isOpened, handleClose }) => {
     const { id } = e.target;
     handlePass();
 
-    if (isErrors) return;
+    if (isTypeErrors) return;
     if (id === 'register') return registerHandler();
     if (id === 'forgot') return resetHandler();
 
@@ -50,6 +50,8 @@ export const RegisterTemplate = ({ children, name, isOpened, handleClose }) => {
     ...errors,
     ...toggle,
     ...auth,
+    isTypeErrors,
+    isPassed,
     combinedFunc,
     isOpened,
     isAccept,
