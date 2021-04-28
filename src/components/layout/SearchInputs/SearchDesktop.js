@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import { Search } from 'components/UI/Search';
 import { SelectRegion } from 'components/UI/SelectRegion';
 import { Filter } from 'components/UI/Filter';
 import { useMedia } from 'hooks/useMedia';
+import { SearchContext } from 'state/context/search-context';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   container: {
@@ -33,9 +34,11 @@ export const SearchDesktop = ({
   isIndex,
   ...rest
 }) => {
+  const { searchDelContext } = useContext(SearchContext);
   const { container, search, filter } = useStyles();
   const { matchesTablet } = useMedia();
   const buttonSwitch = () => (isIndex ? tableHandler() : searchBtnHandler());
+  // if (!isIndex) searchDelContext();
 
   return (
     <Fragment>
@@ -44,6 +47,7 @@ export const SearchDesktop = ({
           <Search
             searchHandler={searchHandler}
             searchBtnHandler={searchBtnHandler}
+            searchDelContext={searchDelContext}
             isIndex={isIndex}
             {...rest}
           />

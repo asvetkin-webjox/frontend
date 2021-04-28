@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Search = ({ searchHandler, searchBtnHandler, isIndex }) => {
+export const Search = ({ searchHandler, searchDelContext, searchBtnHandler, isIndex }) => {
   const { container } = useStyles();
   const { isClicked, clickHandler } = useHidePholder('Поиск по нишам');
   const keyHandler = (e) => {
@@ -29,6 +29,7 @@ export const Search = ({ searchHandler, searchBtnHandler, isIndex }) => {
   } = useContext(SearchContext);
   const { matchesMobile } = useMedia();
   const checkIfIcon = isIndex && matchesMobile;
+  const mergeFunc = (e) => [searchHandler(e), searchDelContext()];
 
   // dont show icon on index and mobile
 
@@ -41,7 +42,7 @@ export const Search = ({ searchHandler, searchBtnHandler, isIndex }) => {
         width="100%"
         isAdornment={!checkIfIcon}
         styles={InputStyle}
-        inputHandler={searchHandler}
+        inputHandler={mergeFunc}
         onKeyUp={keyHandler}
         styles={matchesMobile && isIndex ? inputIndexStyle : InputStyle}
       />

@@ -14,6 +14,11 @@ export const useGenerateUrl = (isIndex) => {
   const [isUrl, setUrl] = useState(defaultUrl);
   const { searchContext } = useContext(SearchContext);
   const [isSearch, setSearch] = useState();
+  const [isAdd, setAdd] = useState('');
+
+  // const addHandler = () => {
+  //   if ()
+  // }
 
   useEffect(() => {
     if (isIndex) {
@@ -23,8 +28,7 @@ export const useGenerateUrl = (isIndex) => {
 
   const searchHandler = (e) => {
     const { value } = e.target;
-    const lowerCase = value.toLowerCase();
-    const timeOutId = setTimeout(() => setSearch(lowerCase), 300);
+    const timeOutId = setTimeout(() => setSearch(value.toLowerCase()), 300);
     // if (!isIndex && isCtxSearch) searchDelContext();
 
     return () => clearTimeout(timeOutId);

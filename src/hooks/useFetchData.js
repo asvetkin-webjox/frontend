@@ -38,8 +38,6 @@ export const useFetchData = (isIndex) => {
       console.log('useFetchData -> error', error);
     }
 
-    if (!isIndex) searchDelContext();
-
     setLoading(false);
   }, [isUrl]);
 
