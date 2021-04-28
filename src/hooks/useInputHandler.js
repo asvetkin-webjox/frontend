@@ -1,18 +1,18 @@
 import { useState } from 'react';
 
-export const useInputHandler = () => {
+export const useInputHandler = (isFilter, regex) => {
   const [isInputs, setInputs] = useState({});
 
   const inputHandler = (type) => (e) => {
     const { value } = e.target;
-    const timeOutId = setTimeout(() => {
-      setInputs((state) => ({
-        ...state,
-        [type]: value,
-      }));
-    }, 200);
-    return () => clearTimeout(timeOutId);
+    // const timeOutId = setTimeout(() => {
+    setInputs((state) => ({
+      ...state,
+      [type]: isFilter ? value.replace(regex, '') : value,
+    }));
+    // }, 200);
+    // return () => clearTimeout(timeOutId);
   };
 
-  return { isInputs, inputHandler };
+  return { isInputs, inputHandler, setInputs };
 };

@@ -37,7 +37,7 @@ export const SelectRegion = ({ width = '214px', isIndex, modalHandler, ...props 
 
   return (
     <div className={container} onClick={conditionalHandler} id="Регион">
-      <DropRegion toggledMenu={toggledMenu} isIndex={isIndex} {...props} />
+    <DropRegion toggledMenu={toggledMenu} isIndex={isIndex} {...props} />
       <ModalsContainer {...props} />
     </div>
   );
