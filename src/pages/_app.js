@@ -6,6 +6,7 @@ import theme from 'lib/theme';
 import ToggleContextProvider from 'state/context/toggle-context';
 import AuthContextProvider from 'state/context/auth-context';
 import SearchContextProvider from 'state/context/search-context';
+import SideMenuContextProvider from 'state/context/sideMenu-context';
 
 class MyApp extends App {
   componentDidMount() {
@@ -23,8 +24,10 @@ class MyApp extends App {
         <AuthContextProvider>
           <SearchContextProvider>
             <ToggleContextProvider>
-              <CssBaseline />
-              <Component {...pageProps} />
+              <SideMenuContextProvider>
+                <CssBaseline />
+                <Component {...pageProps} />
+              </SideMenuContextProvider>
             </ToggleContextProvider>
           </SearchContextProvider>
         </AuthContextProvider>

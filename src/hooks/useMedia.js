@@ -11,12 +11,14 @@ export const useMedia = () => {
   const matchesTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
   const matchesDesktop1024 = useMediaQuery(theme.breakpoints.between('md', 'lg'));
   const matchesDesktop = useMediaQuery(theme.breakpoints.up('lg'));
+  const matchesHD = useMediaQuery(theme.breakpoints.up('xl'));
 
   return {
     matchesTablet,
     matchesMobile,
     matchesDesktop,
     matchesDesktop1024,
+    matchesHD,
     isChanged,
     changeHandler,
   };

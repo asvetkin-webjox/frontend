@@ -11,7 +11,13 @@ export const FilterIcon = () => {
   const { container } = useStyles();
 
   return (
-    <svg height="15" viewBox="0 0 16 15" width="16" className={container} id="Иконка">
+    <svg
+      height="15"
+      viewBox="0 0 16 15"
+      width="16"
+      className={container}
+      id="Иконка"
+    >
       <g fillRule="evenodd" id="Иконка">
         <path
           id="Иконка"

@@ -7,6 +7,9 @@ import { useFetchData } from 'hooks/useFetchData';
 import { IndexHeader } from 'components/layout/Index/IndexHeader';
 import { NoSsr } from '@material-ui/core';
 import { IndexAnnotation } from 'components/layout/Index/IndexAnnotation';
+import SideMenu from 'components/layout/SideMenu/SideMenuContainer';
+import { useMedia } from 'hooks/useMedia';
+import { AuthContext } from 'state/context/auth-context';
 import { useOpenModal } from 'hooks/useOpenModal';
 import { ModalsContainer } from 'components/layout/Modals/ModalsContainer';
 
@@ -77,19 +80,31 @@ export const Template = ({ children, tableHandler, isIndex = false }) => {
   //   return true;
   // })();
 
+  const { matchesHD } = useMedia();
+  const {
+    authState: { isAuth },
+  } = useContext(AuthContext);
+
   return (
     <NoSsr>
       <div className={wholeContainer} onClick={resetHandler}>
-        <div className={container}>
+        <div className={container} style={matchesHD && isAuth && !isIndex ? { width: 1176 } : {}}>
           <div style={{ marginBottom: '12px' }}>
             <Header modalHook={modalHook} />
           </div>
           {isIndex && <IndexHeader />}
-          <div style={{ marginBottom: '40px' }}>
-            <SearchInputs regions={regions} {...dataObject} />
+          <div style={{ width: '100%', display: 'flex' }}>
+            <div style={matchesHD && isAuth && !isIndex ? { width: 227 } : { display: 'none' }}>
+              <SideMenu />
+            </div>
+            <div style={{ width: 949 }}>
+              <div style={{ marginBottom: '40px' }}>
+                <SearchInputs regions={regions} {...dataObject} />
+              </div>
+              {isIndex && <IndexAnnotation />}
+              {children(dataObject)}
+            </div>
           </div>
-          {isIndex && <IndexAnnotation />}
-          {children(dataObject)}
         </div>
       </div>
       <ModalsContainer {...modalHook} />
