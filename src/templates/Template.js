@@ -61,7 +61,7 @@ export const Template = ({ children, tableHandler, isIndex = false }) => {
   const [items, pages] = data;
   const { ...modalHook } = useOpenModal();
   const dataObject = { items, pages, isIndex, tableHandler, ...modalHook, ...combinedObject };
-  // const isAuth;
+
   const conditionCheck = (...conditions) => {
     return conditions.map((c) => {
       if (!c) return null;
@@ -81,6 +81,7 @@ export const Template = ({ children, tableHandler, isIndex = false }) => {
   // })();
 
   const { matchesHD } = useMedia();
+
   const {
     authState: { isAuth },
   } = useContext(AuthContext);

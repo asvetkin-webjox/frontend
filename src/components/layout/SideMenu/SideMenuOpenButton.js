@@ -10,12 +10,9 @@ const SideMenuOpenButton = () => {
     authState: { isAuth },
   } = useContext(AuthContext);
 
-  const {
-    sideMenuState: { isSideMenuOpen },
-    handleSideMenuOpen,
-  } = useContext(SideMenuContext);
+  const { handleSideMenuOpen } = useContext(SideMenuContext);
 
-  return isAuth && !isSideMenuOpen ? (
+  return isAuth ? (
     <IconButton
       onClick={handleSideMenuOpen}
       style={{ padding: 0, marginRight: 15, transform: 'translateY(-3px)' }}
