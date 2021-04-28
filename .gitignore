@@ -13,3 +13,4 @@ readme.md
 node_modules
 .coverage
 .env
+.prettierrc

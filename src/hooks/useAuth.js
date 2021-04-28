@@ -7,7 +7,7 @@ import { headers, URL, body } from 'config/config';
 export const useAuth = (
   { mail: username, password, repeat: passwordRetyped },
   handlePass,
-  handleClose,
+  handleClose
 ) => {
   const authContext = useContext(AuthContext);
   const [isLoading, setLoading] = useState(false);

@@ -9,3 +9,6 @@ export const DIMMED_BG = 'DIMMED_BG';
 export const RESET = 'RESET';
 export const SET_SEARCH = 'SET_SEARCH';
 export const CLEAR_SEARCH = 'CLEAR_SEARCH';
+
+export const SIDE_MENU_OPEN = 'SIDE_MENU_OPEN';
+export const SIDE_MENU_CLOSE = 'SIDE_MENU_CLOSE';
