@@ -15,7 +15,7 @@
 - Next.js
 - Material UI
 - JSS
-- HOOKS
+- Hooks
 
 ## Используемые пакеты
 - js-cookie
