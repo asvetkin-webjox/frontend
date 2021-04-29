@@ -14,7 +14,7 @@ export const checkPassword = (pswd) => {
   return true;
 };
 
-/* if object all values are false, return true, ow return false */
+/* if object all values are false, return true, or return false */
 export const ifAllFalse = (object) => {
   const values = Object.values(object);
   const checkValue = values.filter(Boolean).length === 0;
