@@ -12,13 +12,13 @@
 4. Saarch inputs – строка поиска и выбора регионов
 
 ## Доп. технологии
-**Next.js**
-**Material UI**
-**JSS**
-**HOOKS**
+- Next.js
+- Material UI
+- JSS
+- HOOKS
 
 ## Используемые пакеты
-**js-cookie**
-**react-click-away-listener**
-**react-number-format**
-**react-transition-group**
+- js-cookie
+- react-click-away-listener
+- react-number-format
+- react-transition-group
